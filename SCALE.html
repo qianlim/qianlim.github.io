@@ -1,162 +1,190 @@
-<!Doctype html>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="./style_project_page.css" media="screen"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@glidejs/glide/dist/css/glide.core.min.css">
+
+
 <html lang="en">
-    <head>
-        <title>SCALE: Modeling Clothed Humans with a Surface Codec of Articulated Local Elements</title>
+<head>
+	<title>SCALE: Modeling Clothed Humans with a Surface Codec of Articulated Local Elements</title>
+    <!-- Facebook automatically scrapes this. Go to https://developers.facebook.com/tools/debug/
+        if you update and want to force Facebook to re-scrape. -->
+	<meta property="og:image" content="./projects/SCALE/teasers/SCALE_teaser.png"/>
+	<meta property="og:title" content="SCALE: Modeling Clothed Humans with a Surface Codec of Articulated Local Elements." />
+	<meta property="og:description" content="SCALE, Ma et al., CVPR 2021." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="author" content="Qiali Ma">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- <link rel="icon" type="image/png" href="data/bunny.png"/> -->
+    <!-- Add your Google Analytics tag here -->
+    <!-- <script async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-97476543-1"></script> -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-97476543-1');
+    </script>
 
-        <link rel="stylesheet" type="text/css" href="style_project_page.css">
-        <link href="https://fonts.googleapis.com/css?family=Arvo|Roboto&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
-        <link rel="stylesheet" href="https://unpkg.com/@glidejs/glide/dist/css/glide.core.min.css">
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script src="https://unpkg.com/@glidejs/glide"></script>
-        <style type="text/css">
-            .side-text {
-                width:60%;
-                display:inline-block;
-                vertical-align:top;
-            }
-            .side-image {
-                width: 38%;
-                display: inline-block;
-                vertical-align: top;
-            }
-            .controls {
-                margin-bottom: 10px;
-            }
-            .left-controls {
-                display: inline-block;
-                vertical-align: top;
-                width: 80%;
-            }
-            .right-controls {
-                display: inline-block;
-                vertical-align: top;
-                width: 19%;
-                text-align: right;
-            }
-            .render_window {
-                display: inline-block;
-                vertical-align: middle;
-                box-shadow: 1px 0px 5px black;
-                margin-right: 10px;
-                margin-bottom: 10px;
-                width: calc(33% - 10px);
-            }
-            .progress {
-                background: #666;
-                position: relative;
-                height: 5px;
-                margin-bottom: -5px;
-                display: none;
-            }
-            .glide__slide:hover {cursor: grab;}
-            .glide__slide:active {cursor: grabbing;}
-            .glide__slide img {width: 90%;}
-            .glide__bullets {
-                text-align: center;
-            }
-            .glide__bullet--active {
-                color: #aaa; 
-            }
+</head>
 
-            @media (max-width: 400px) {
-                .render_window {
-                    display: block;
-                    width: 90%;
-                    margin: 10px auto;
-                }
-            }
-            @media (max-width: 700px) {
-                .side-image {
-                    display: block;
-                    width: 80%;
-                    margin: 10px auto;
-                }
-                .side-text {
-                    display: block;
-                    width: 100%;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <div class="section">
-            <h1 class="project-title">
-                SCALE: Modeling Clothed Humans with a <br />
-                Surface Codec of Articulated Local Elements
-            </h1>
-            <div class="authors">
-                <a href=https://ps.is.tuebingen.mpg.de/person/qma/>
-                    Qianli Ma <sup>1,2</sup>
-                </a>
-                <a href=http://www-scf.usc.edu/~saitos/>
-                    Shunsuke Saito <sup>1</sup>
-                </a>
-                <a href=https://ps.is.tuebingen.mpg.de/person/jyang/>
-                    Jinlong Yang <sup>1</sup>
-                </a>
-                <a href=https://vlg.inf.ethz.ch/people/person-detail.siyutang.html/>
-                    Siyu Tang <sup>2</sup>
-                </a>
-                <a href=https://ps.is.tuebingen.mpg.de/person/black/>
-                Michael J. Black <sup>1</sup>
-                </a>
-            </div>
+<body>
+<div class="container">
+    <h1 class="project-title">
+        SCALE: Modeling Clothed Humans with a <br /> Surface Codec of Articulated Local Elements
+    </h1>
 
-            <div class="affiliations">
-                <span><sup>1</sup> Max Planck Institute for Intelligent Systems, Tübingen</span></br>
-                <span><sup>2</sup> ETH Zürich</span> </br>
-            </div>
+    <div class="conference">
+        In CVPR 2021
+    </div>
 
-            <div class="project-conference">
-                CVPR 2021
-            </div>
-
-           
-            <!-- <div class="project-icons">
-                <a href="">
-                    <i class="fa fa-file"></i> <br/>
-                    Paper
-                </a>
-                <a href="">
-                    <i class="fa fa-github"></i> <br/>
-                    Code
-                </a>
-            </div> -->
-
-            <div class="teaser-image">
-                <img src="projects/SCALE/teasers/SCALE_teaser.png" style="width:100%;">
-                <p class="caption">Learning to model and reconstruct humans in clothing is challenging due to articulation, non-rigid deformation, and varying clothing types and topologies. 
-                    To enable learning, the choice of representation is the key.
-                    Recent work uses neural networks to parameterize local surface elements.
-                    This approach captures locally coherent geometry and non-planar details, can deal with varying topology, and does not require registered training data.
-                    However, naively using such methods to model 3D clothed humans fails to capture fine-grained local deformations and generalizes poorly. 
-                    To address this, we present three key innovations: 
-                    First, we deform surface elements based on a human body model such that large-scale deformations caused by articulation are explicitly separated from topological changes and local clothing deformations. 
-                    Second, we address the limitations of existing neural surface elements by regressing local geometry from local features, significantly improving the expressiveness.
-                    Third, we learn a pose embedding on a 2D parameterization space that encodes posed body geometry, improving generalization to unseen poses by reducing non-local spurious correlations.
-                    We demonstrate the efficacy of our surface representation by learning models of complex clothing from point clouds. The clothing can change topology and deviate from the topology of the body. Once learned, we can  animate previously unseen motions, producing high-quality point clouds, from which we generate realistic images with neural rendering.
-                    We assess the importance of each technical contribution and show that our approach outperforms the state-of-the-art methods in terms of reconstruction accuracy and inference time.</p>
-             </div>
-            </div>
-
-            <!-- <div class="section-title">Paper</div>
-            <div class="content">
-                <img src="projects/SCALE/figures/paper_snapshot_1x8.png" style="width:60%;">
-            </div> -->
+    <br><br>
 
 
-             <div class="project-comingsoon">
-                 Paper, Demos, Code coming soon...
-            </div>
+    <div class="authors">
+        <a href=https://ps.is.tuebingen.mpg.de/person/qma/>
+            Qianli Ma <sup>1,2</sup>
+        </a>
+        <a href=http://www-scf.usc.edu/~saitos/>
+            Shunsuke Saito <sup>1</sup>
+        </a>
+        <a href=https://ps.is.tuebingen.mpg.de/person/jyang/>
+            Jinlong Yang <sup>1</sup>
+        </a>
+        <a href=https://vlg.inf.ethz.ch/people/person-detail.siyutang.html/>
+            Siyu Tang <sup>2</sup>
+        </a>
+        <a href=https://ps.is.tuebingen.mpg.de/person/black/>
+        Michael J. Black <sup>1</sup>
+        </a>
+    </div>
+    <br>
+
+    <div class="affiliations">
+        <span><sup>1</sup> Max Planck Institute for Intelligent Systems, Tübingen</span></br>
+        <span><sup>2</sup> ETH Zürich</span> </br>
+    </div>
+    <br><br>
+
+    <div class="project-icons">
+        <a href="https://ps.is.tuebingen.mpg.de/uploads_file/attachment/attachment/642/SCALE.pdf">
+            <i class="fa fa-file-pdf-o"></i> <br/>
+            Paper
+        </a>
+        <a href="https://qianlim.github.io/SCALE">
+            <i class="fa fa-github"></i> <br/>
+            Code coming <br/>
+        </a>
+        <a href="https://youtu.be/-EvWqFCUb7U">
+            <i class="fa fa-youtube-play"></i> <br/>
+            Video
+        </a>
+
+        <!-- <a href="">
+            <i class="fa fa-picture-o"></i> <br/>
+            Poster
+        </a>
+        <a href="">
+            <i class="fa fa-file-powerpoint-o"></i> <br/>
+            Slides
+        </a>
+        <a href="">
+            <i class="fa fa-newspaper-o"></i> <br/>
+            Blog
+        </a> -->
+    </div>
+
+    <br>
+    <br>
+    <div class="teaser">
+        <img src="./projects/SCALE/teasers/SCALE_teaser.png" alt="Teaser figure."/>
+        <br>
+        <p style="width: 90%; text-align: center;">
+            SCALE models 3D clothed humans with hundreds of <b>articulated surface elements</b>, 
+            resulting in avatars with <b>realistic clothing</b> that deforms naturally even in 
+            the presence of <b>topological change</b>.
+        </p>
+    </div>
+
+    <br><br>
     
-    <!-- The website template is borrowed from <a href="https://paschalidoud.github.io/neural_parts">Neural Parts</a>. -->
-    </body>
+    <hr>
+    <h1>Abstract</h1>
+
+    <p style="width: 85%">
+        Learning to model and reconstruct humans in clothing is challenging due to articulation, non-rigid deformation, and varying clothing types and topologies. 
+        To enable learning, the choice of representation is the key.
+        Recent work uses neural networks to parameterize local surface elements.
+        This approach captures locally coherent geometry and non-planar details, can deal with varying topology, and does not require registered training data.
+        However, naively using such methods to model 3D clothed humans fails to capture fine-grained local deformations and generalizes poorly. 
+        To address this, we present three key innovations: 
+        First, we deform surface elements based on a human body model such that large-scale deformations caused by articulation are explicitly separated from topological changes and local clothing deformations. 
+        Second, we address the limitations of existing neural surface elements by regressing local geometry from local features, significantly improving the expressiveness.
+        Third, we learn a pose embedding on a 2D parameterization space that encodes posed body geometry, improving generalization to unseen poses by reducing non-local spurious correlations.
+        We demonstrate the efficacy of our surface representation by learning models of complex clothing from point clouds. The clothing can change topology and deviate from the topology of the body. Once learned, we can  animate previously unseen motions, producing high-quality point clouds, from which we generate realistic images with neural rendering.
+        We assess the importance of each technical contribution and show that our approach outperforms the state-of-the-art methods in terms of reconstruction accuracy and inference time.</p>
+    </p>
+
+    <br><br>
+
+    <hr>
+    <h1>Video</h1>
+
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/-EvWqFCUb7U" frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+    </div>
+
+    <br><br>
+
+
+    <hr>
+    <h1>Paper</h1>
+       <a href="https://ps.is.tuebingen.mpg.de/uploads_file/attachment/attachment/642/SCALE.pdf"><img src="projects/SCALE/figures/paper_snapshot_1x8.png" style="width:85%;" height="auto"></a>
+
+       <div class="paper-info">
+       <br>
+       <span style="font-size: 14pt; font-weight: bold;">SCALE: Modeling Clothed Humans with a Surface Codec of Articulated Local Elements</span><br>
+       <span style="font-size: 14pt;"> Qianli Ma, Shunsuke Saito, Jinlong Yang, Siyu Tang and Michael J. Black. </span>  <br>
+       <span style="font-size: 14pt;">In CVPR 2021</span> <br>
+       <span style="font-size: 14pt;"><a href="https://ps.is.tuebingen.mpg.de/uploads_file/attachment/attachment/642/SCALE.pdf" target="_blank" rel="noopener">[PDF]</a>&nbsp; <a href="https://ps.is.tuebingen.mpg.de/uploads_file/attachment/attachment/643/SCALE-supp.pdf" target="_blank" rel="noopener">[Supp]</a>&nbsp; [arXiv]<br />
+        
+       <pre><code>@inproceedings{Ma:CVPR:2021,
+title = {{SCALE}: Modeling Clothed Humans with a Surface Codec of Articulated Local Elements},
+author = {Ma, Qianli and Saito, Shunsuke and Yang, Jinlong and Tang, Siyu and Black, Michael J.},
+booktitle = {Proceedings IEEE/CVF Conf.~on Computer Vision and Pattern Recognition (CVPR)},
+month = jun,
+year = {2021},
+month_numeric = {6}}
+</code></pre>
+</div>
+
+    <br><br>
+
+
+
+    <hr>
+    <h1>Acknowledgements</h1>
+
+    <p style="width: 85%;">
+        We thank Sergey Prokudin for insightful discussions and providing
+        <a href="https://arxiv.org/abs/2008.06872">SMPLpix neural rendering</a> results. <br>
+        
+        The webpage template is adapted from those of 
+        <a href="https://sorderender.github.io/">RADAR</a> and
+        <a href="https://paschalidoud.github.io/neural_parts">Neural Parts</a>.
+    
+    </p>
+
+    <br><br>
+</div>
+
+</body>
+
 </html>
