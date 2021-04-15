@@ -53,7 +53,7 @@ a {
 
 .conference {
     font-size: 24px;
-    font-family: "Helvetica Neue-Light";
+    font-family: "Helvetica Neue-Light", "Helvetica Neue", "Helvetica", sans-serif;
     margin-top: 20px;
     width: 95%;
 }
@@ -131,7 +131,7 @@ p {
 h1 {
     font-weight: 360;
     font-size: 28px;
-    font-family: "Helvetica Neue-Light";
+    font-family: "Helvetica Neue-Light", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     text-align: center;
 }
 
@@ -209,6 +209,7 @@ a:hover {
 
 h1.project-title {
     font-size: 24pt;
+    font-family: "Helvetica Neue-Light", "Helvetica Neue", "Helvetica", sans-serif;
     font-weight: normal;
     line-height: 120%;
 }
