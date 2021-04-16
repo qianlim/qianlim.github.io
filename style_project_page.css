@@ -224,3 +224,9 @@ h1.project-title {
     padding: 0px 20px 0px 20px;
 }
 .project-icons i { font-size: 30px; }
+
+.fa-arxiv:before {
+    font-weight: 750;
+    font-size: 30pt;
+    content: '\1D6D8';
+}
