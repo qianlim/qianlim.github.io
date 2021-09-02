@@ -1,0 +1,206 @@
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("jquery", "1.3.2");</script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="style_project_page.css" media="screen"/>
+<link href="https://fonts.googleapis.com/css?family=Arvo|Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@glidejs/glide/dist/css/glide.core.min.css">
+
+
+<html lang="en">
+<head>
+	<title>The Power of Points for Modeling Humans in Clothing</title>
+    <link rel="icon" type="image/png" href="projects/POP/figures/popcorn_twemoji.png">
+
+	<meta property="og:image" content="https://qianlim.github.io/projects/POP/figures/teaser_1200x630.png"/>
+	<meta property="og:title" content="[ICCV 2021] The Power of Points for Modeling Humans in Clothing" />
+	<meta property="og:description" content="POP: a point-based, unified model for multiple subjects and outfits that can create an
+    animatable avatar with pose-dependent clothing deformations from only a single static scan!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="[ICCV 2021] The Power of Points for Modeling Humans in Clothing" />
+    <meta property="twitter:description" content="POP: a point-based, unified model for multiple subjects and outfits that can create an
+    animatable avatar with pose-dependent clothing deformations from only a single static scan!" />
+    <meta property="twitter:image" content="https://qianlim.github.io/projects/POP/figures/teaser_1200x630.png" />
+    <meta property="twitter:image:alt" content="POP, Ma et al., ICCV 2021" />
+
+
+    <!-- Add your Google Analytics tag here -->
+    <!-- <script async
+            src=""></script> -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-97476543-1');
+    </script>
+
+</head>
+
+<body>
+<div class="container">
+    <h1 class="project-title">
+        The Power of Points for Modeling Humans in Clothing
+    </h1>
+
+    <div class="conference">
+        In ICCV 2021
+    </div>
+
+    <br><br>
+
+
+    <div class="authors">
+        <a href=https://qianlim.github.io/>
+            Qianli Ma <sup>1,2</sup>
+        </a>
+        <a href=https://ps.is.tuebingen.mpg.de/person/jyang/>
+            Jinlong Yang <sup>1</sup>
+        </a>
+        <a href=https://vlg.inf.ethz.ch/people/person-detail.siyutang.html/>
+            Siyu Tang <sup>2</sup>
+        </a>
+        <a href=https://ps.is.tuebingen.mpg.de/person/black/>
+        Michael J. Black <sup>1</sup>
+        </a>
+    </div>
+    <br>
+
+    <div class="affiliations">
+        <span><sup>1</sup> Max Planck Institute for Intelligent Systems, Tübingen</span></br>
+        <span><sup>2</sup> ETH Zürich</span> </br>
+    </div>
+    <br><br>
+
+    <div class="project-icons">
+        <a href="https://ps.is.tuebingen.mpg.de/uploads_file/attachment/attachment/655/POP_camera_ready.pdf">
+            <i class="fa fa-file-pdf-o"></i> <br/>
+            Paper
+        </a>
+        <a href="https://qianlim.github.io/POP">
+            <i class="fa fa-github"></i> <br/>
+            Code coming <br/>
+        </a>
+        <a href="https://youtu.be/5M4F9zSWIEE">
+            <i class="fa fa-youtube-play"></i> <br/>
+            Video
+        </a>
+    </div>
+
+    <div class="teaser">
+        <br>
+        <p style="width: 90%; text-align: center;">
+            We introduce POP — a point-based, unified model for multiple subjects and outfits that can turn a <b>single, static</b> 3D scan into an
+             animatable avatar with natural <b>pose-dependent</b> clothing deformations.
+        </p>
+        <img src="./projects/POP/figures/pop_teaser.png" alt="Teaser figure."/>
+        <p style="width: 91%; text-align: left;">
+            <font size="3",font-family="courier">Source Scan &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; Fitted POP&nbsp;  &nbsp; &nbsp; &nbsp;&nbsp;   &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp;&nbsp;  &nbsp; &nbsp; &nbsp;Animations
+                with pose-dependent deformations
+            </font>
+        </p>
+        <!-- <br> -->
+
+    </div>
+
+    <br><br>
+    
+    <hr>
+    <h1>Abstract</h1>
+
+    <p style="width: 85%">
+        Currently it requires an artist to create 3D human avatars with realistic clothing that can move naturally. 
+        Despite progress on 3D scanning and modeling of human bodies, there is still no technology that can easily turn a static
+        scan into an animatable avatar. Automating the creation of such avatars would enable many applications in games, social networking, animation, and AR/VR to name a few. 
+        The key problem is one of representation. Standard 3D meshes are widely used in modeling the minimally-clothed body
+        but do not readily capture the complex topology of clothing. Recent interest has shifted to implicit surface models for this task but they are computationally heavy and
+        lack compatibility with existing 3D tools. What is needed is a 3D representation that can capture varied topology at
+        high resolution and that can be learned from data. We argue that this representation has been with us all along — the point cloud. 
+        Point clouds have properties of both implicit and explicit representations that we exploit to model 3D garment geometry on a human body. 
+        We train a neural network with a novel local clothing geometric feature to represent the shape of different outfits. The network is trained from 3D point clouds of many types of clothing,
+        on many bodies, in many poses, and learns to model posedependent clothing deformations. The geometry feature can
+        be optimized to fit a previously unseen scan of a person in clothing, enabling the scan to be reposed realistically. Our model demonstrates superior quantitative and qualitative results in both multi-outfit modeling and unseen outfit
+        animation. The code is available for research purposes. </p>
+    <br>
+    </p>
+
+    <hr>
+    <h1>Video</h1>
+
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/5M4F9zSWIEE" frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+    </div>
+
+    <br><br>
+
+    <hr>
+    <h1>Paper</h1>
+       <a href="https://ps.is.tuebingen.mpg.de/uploads_file/attachment/attachment/655/POP_camera_ready.pdf"><img src="projects/POP/figures/paper_snapshot_1x8.png" style="width:85%;" height="auto"></a>
+
+       <div class="paper-info">
+       <br>
+       <span style="font-size: 14pt; font-weight: bold;">The Power of Points for Modeling Humans in Clothing</span><br>
+       <span style="font-size: 14pt;"> Qianli Ma, Jinlong Yang, Siyu Tang and Michael J. Black. </span>  <br>
+       <span style="font-size: 14pt;">In ICCV 2021</span> <br>
+       <span style="font-size: 14pt;"><a href="https://ps.is.tuebingen.mpg.de/uploads_file/attachment/attachment/655/POP_camera_ready.pdf" target="_blank" rel="noopener">[PDF]</a>&nbsp; <a href="https://ps.is.tuebingen.mpg.de/uploads_file/attachment/attachment/656/POP_supp.pdf" target="_blank" rel="noopener">[Supp]</a>&nbsp;
+       <!-- <a href="https://arxiv.org/abs/2104.07660" target="_blank" rel="noopener">[arXiv]<br /></a> -->
+    
+       <pre><code>@inproceedings{POP:ICCV:2021,
+title = {The Power of Points for Modeling Humans in Clothing},
+author = {Ma, Qianli and Yang, Jinlong and Tang, Siyu and Black, Michael J.},
+booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+month = oct,
+year = {2021},
+month_numeric = {10}}
+</code></pre>
+</div>
+
+    <br><br>
+
+    <hr>
+    <h1>Related Projects</h1>
+    <p style="width: 85%;text-align:left; ">
+    <b><a href="https://qianlim.github.io/SCALE">SCALE: Modeling Clothed Humans with a Surface Codec of Articulated Local Elements (CVPR 2021)</a></b> <br>
+    <i>Qianli Ma, Shunsuke Saito, Jinlong Yang, Siyu Tang, Michael J. Black</i><br>
+    Our previous point-based model for humans: modeling pose-dependent shapes of clothed humans explicitly with hundreds of articulated surface elements: 
+    the clothing deforms naturally even in the presence of topological change!<br><br>
+    
+    <b><a href="https://scanimate.is.tue.mpg.de/">SCANimate: Weakly Supervised Learning of Skinned Clothed Avatar Networks (CVPR 2021)</a></b> <br>
+    <i>Shunsuke Saito, Jinlong Yang, Qianli Ma, Michael J. Black</i><br>
+    Our <i>implicit</i> solution for articulated shape modeling: cycle-consistent implicit skinning fields + locally pose-aware implicit function = 
+    a fully animatable avatar with implicit surface from raw scans without surface registration!<br><br>
+
+    <b><a href="https://cape.is.tue.mpg.de/">Learning to Dress 3D People in Generative Clothing (CVPR 2020)</a></b> <br>
+    <i>Qianli Ma, Jinlong Yang, Anurag Ranjan, Sergi Pujades, Gerard Pons-Moll, Siyu Tang, Michael J. Black</i><br>
+    CAPE &mdash; a generative model and a large-scale dataset for 3D clothed human meshes in varied poses and garment types. 
+    We trained POP using the <a href="https://cape.is.tue.mpg.de/dataset">CAPE dataset</a>, check it out!
+
+    </p>
+
+    <br><br>
+    <hr>
+    <h1>Acknowledgements</h1>
+
+    <p style="width: 85%;">
+        Q. Ma acknowledges the funding by Deutsche Forschungsgemeinschaft (DFG, German Research Foundation)
+        and the support from the <a href="https://learning-systems.org/">Max Planck ETH Center for Learning Systems</a>.<br>
+        
+        The webpage template is adapted from those of 
+        <a href="https://sorderender.github.io/">RADAR</a> and
+        <a href="https://paschalidoud.github.io/neural_parts">Neural Parts</a>.
+    
+    </p>
+
+    <br><br>
+</div>
+
+</body>
+
+</html>
