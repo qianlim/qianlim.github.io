@@ -21,9 +21,8 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content="[3DV 2022] Neural Point-based Shape Modeling of Humans in Challenging Clothing" />
-    <!-- <meta property="twitter:description" content="POP: a point-based, unified model for multiple subjects and outfits that can create an
-    animatable avatar with pose-dependent clothing deformations from only a single static scan!" />
-    <meta property="twitter:image" content="https://qianlim.github.io/projects/POP/figures/teaser_1200x630.png" /> -->
+    <meta property="twitter:description" content="SkiRT: a powerful point-based shape representaiton for modeling digital humans in clothing, now handeling challenging outfits like skirts and dresses!" />
+    <!-- <meta property="twitter:image" content="https://qianlim.github.io/projects/POP/figures/teaser_1200x630.png" /> -->
     <meta property="twitter:image:alt" content="SkiRT, Ma et al., 3DV 2022" />
 
 
@@ -65,77 +64,77 @@
         </a>
         <a href=https://ps.is.tuebingen.mpg.de/person/black/>
         Michael J. Black <sup>2</sup>
-        </a>
-        <a href=https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html>
-            Siyu Tang <sup>1</sup>
-        </a>
-    </div>
-    <br>
-
-    <div class="affiliations">
-        <span><sup>1</sup> ETH Zürich</span> </br>
-        <span><sup>2</sup> Max Planck Institute for Intelligent Systems, Tübingen</span></br>
-    </div>
-    <br><br>
-
-    
-    <!-- <div class="project-icons">
-        <a href="https://arxiv.org/pdf/2109.01137.pdf">
-            <i class="fa fa-file-pdf-o"></i> <br/>
-            Paper
-        </a>
-        <a href="https://github.com/qianlim/POP">
-            <i class="fa fa-github"></i> <br/>
-            Code <br/>
-        </a>
-        <a href="https://youtu.be/JY5OI74yJ4w">
-            <i class="fa fa-youtube-play"></i> <br/>
-            Video
-        </a> -->
-        <!-- <a href="https://ps.is.tuebingen.mpg.de/uploads_file/attachment/attachment/658/POP_poster.pdf">
-            <i class="fa fa-newspaper-o"></i> <br/>
-            Poster
-        </a> -->
-
-    <!-- </div>
-
-    <div class="teaser">
+            </a>
+            <a href=https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html>
+                Siyu Tang <sup>1</sup>
+            </a>
+        </div>
         <br>
-        <p style="width: 90%; text-align: center;">
-            We introduce POP — a point-based, unified model for multiple subjects and outfits that can turn a single, static 3D scan into an
-             animatable avatar with natural <b>pose-dependent</b> clothing deformations.
+
+        <div class="affiliations">
+            <span><sup>1</sup> ETH Zürich</span> </br>
+            <span><sup>2</sup> Max Planck Institute for Intelligent Systems, Tübingen</span></br>
+        </div>
+        <br><br>
+
+        
+        <div class="project-icons">
+            <a><!-- <a href="https://arxiv.org/pdf/2109.01137.pdf"> -->
+                <i class="fa fa-file-pdf-o"></i> <br/>
+                Paper
+            </a>
+            <a><!-- <a href="https://github.com/qianlim/POP"> -->
+                <i class="fa fa-github"></i> <br/>
+                Code <br/>
+            </a>
+            <a><!-- <a href="https://youtu.be/JY5OI74yJ4w"> -->
+                <i class="fa fa-youtube-play"></i> <br/>
+                Video
+            </a>
+            <!-- <a href="https://ps.is.tuebingen.mpg.de/uploads_file/attachment/attachment/658/POP_poster.pdf">
+                <i class="fa fa-newspaper-o"></i> <br/>
+                Poster
+            </a> -->
+
+        </div>
+
+        <hr>
+        <h1>TL;DR</h1>
+        <div class="teaser">
+            <p style="width: 90%; text-align: center;">
+                Complex clothing types such as skirts and dresses are still challenging today even for SoTA
+                learning-based digital human models (see below image).
+                We address this challenge with SkiRT: our new point-based representation comprising a 
+                coarse-to-fine scheme and predicting a skinning weight field.
+            </p>
+            <br>
+            <img src="./projects/SkiRT/images/SkiRT_teaser.png" alt="Teaser figure."/>
+            <br><br>
+
+        </div>
+
+
+        <hr>
+        <h1>Abstract</h1>
+
+        <p style="width: 85%">
+            Parametric 3D body models like SMPL only represent minimally-clothed people and are hard to extend to cloth-
+            ing because they have a fixed mesh topology and resolution. To address this limitation, recent work uses implicit
+            surfaces or point clouds to model clothed bodies. While not limited by topology, such methods still struggle to model
+            clothing that deviates significantly from the body, such as skirts and dresses. This is because they rely on the body
+            to canonicalize the clothed surface by reposing it to a reference shape. Unfortunately, this process is poorly defined
+            when clothing is far from the body. Additionally, they use linear blend skinning to pose the body and the skinning
+            weights are tied to the underlying body parts. In contrast, we model the clothing deformation in a local coordinate
+            space without canonicalization. We also relax the skinning weights to let multiple body parts influence the surface.
+            Specifically, we extend point-based methods with a coarse stage, that replaces canonicalization with a learned pose-
+            independent “coarse shape” that can capture the rough surface geometry of clothing like skirts. We then refine
+            this using a network that infers the linear blend skinning weights and pose dependent displacements from the coarse 
+            representation. The approach works well for garments that both conform to, and deviate from, the body. We demonstrate the usefulness of our approach by learning person-
+            specific avatars from examples and then show how they can be animated in new poses and motions. We also show that
+            the method can learn directly from raw scans with missing data, greatly simplifying the process of creating realistic avatars.
+            Code is available for research purposes. </p> 
+        <br>
         </p>
-        <img src="./projects/POP/figures/POP_teaser_captioned.png" alt="Teaser figure."/>
-        <!-- <br> -->
-
-    <!-- </div> -->
-
-    <br>
-    <h2>Paper, Code and Video coming soon...</h3>
-    <br><br>
-
-
-    <hr>
-    <h1>Abstract</h1>
-
-    <p style="width: 85%">
-        Parametric 3D body models like SMPL only represent minimally-clothed people and are hard to extend to cloth-
-        ing because they have a fixed mesh topology and resolution. To address this limitation, recent work uses implicit
-        surfaces or point clouds to model clothed bodies. While not limited by topology, such methods still struggle to model
-        clothing that deviates significantly from the body, such as skirts and dresses. This is because they rely on the body
-        to canonicalize the clothed surface by reposing it to a reference shape. Unfortunately, this process is poorly defined
-        when clothing is far from the body. Additionally, they use linear blend skinning to pose the body and the skinning
-        weights are tied to the underlying body parts. In contrast, we model the clothing deformation in a local coordinate
-        space without canonicalization. We also relax the skinning weights to let multiple body parts influence the surface.
-        Specifically, we extend point-based methods with a coarse stage, that replaces canonicalization with a learned pose-
-        independent “coarse shape” that can capture the rough surface geometry of clothing like skirts. We then refine
-        this using a network that infers the linear blend skinning weights and pose dependent displacements from the coarse 
-        representation. The approach works well for garments that both conform to, and deviate from, the body. We demonstrate the usefulness of our approach by learning person-
-        specific avatars from examples and then show how they can be animated in new poses and motions. We also show that
-        the method can learn directly from raw scans with missing data, greatly simplifying the process of creating realistic avatars.
-        Code is available for research purposes. </p> 
-    <br>
-    </p>
 
     <!-- Video section -->
     <!-- <hr>
@@ -168,6 +167,9 @@
        <span style="font-size: 14pt;">In 3DV 2022</span> <br>
        <!-- <span style="font-size: 14pt;"><a href="https://openaccess.thecvf.com/content/ICCV2021/papers/Ma_The_Power_of_Points_for_Modeling_Humans_in_Clothing_ICCV_2021_paper.pdf" target="_blank" rel="noopener">[Paper]</a>&nbsp; <a href="https://openaccess.thecvf.com/content/ICCV2021/supplemental/Ma_The_Power_of_ICCV_2021_supplemental.pdf" target="_blank" rel="noopener">[Supp]</a>&nbsp;
        <a href="https://arxiv.org/abs/2109.01137" target="_blank" rel="noopener">[arXiv]<br /></a> -->
+        <span style="font-size: 14pt;"><a>[Paper]</a>&nbsp; <a>[Supp]</a>&nbsp;
+       <a>[arXiv]<br /></a>
+
 
        <pre><code>@inproceedings{SkiRT:3DV:2022,
 title = {Neural Point-based Shape Modeling of Humans in Challenging Clothing},
@@ -204,10 +206,8 @@ month_numeric = {9}}
 
     <p style="width: 85%;">
         We thank Shaofei Wang for insightful discussions. 
-        Q. Ma acknowledges the support from the <a href="https://learning-systems.org/">Max Planck ETH Center for Learning Systems</a>.
-        The webpage template is adapted from those of 
-        <a href="https://sorderender.github.io/">RADAR</a> and
-        <a href="https://paschalidoud.github.io/neural_parts">Neural Parts</a>.
+        Qianli Ma acknowledges the support from the <a href="https://learning-systems.org/">Max Planck ETH Center for Learning Systems</a>.
+        This webpage is adapted from the template of <a href="https://paschalidoud.github.io/neural_parts">Neural Parts</a>.
     
     </p>
 
