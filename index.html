@@ -7,6 +7,7 @@
   
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="icon" type="image/png" href="images/icon.png">
+  <script type="text/javascript" src="./show_bib.js"></script>
 </head>
 
 <body>
@@ -15,7 +16,7 @@
       <td style="padding:0px">
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr style="padding:0px">
-            <td style="padding:2.5%;width:64%;vertical-align:middle">
+            <td style="padding:2.5%;width:70%;vertical-align:middle">
               <p style="text-align:left">
                 <name>Qianli Ma</name>
               </p>
@@ -39,8 +40,8 @@
                 
               </p>
             </td>
-            <td style="padding:2.5%;width:44%;max-width:44%;vertical-align:middle">
-              <img style="width:78%;max-width:78%" alt="profile photo" src="images/me.jpg">
+            <td align="middle", style="padding:0%;width:36%;max-width:36%;vertical-align:right">
+              <img style="width:82%;max-width:82%" alt="profile photo" src="images/me.jpg">
             </td>
           </tr>
         </tbody></table>
@@ -74,12 +75,20 @@
               <br>
               <a href="https://qianlim.github.io/SkiRT">Project Page</a> /
               <a href="https://github.com/qianlim/SkiRT">Code</a> /
-              <a href="https://arxiv.org/abs/2209.06814">arXiv</a>
+              <a href="https://arxiv.org/abs/2209.06814">arXiv</a> /
               <!-- <a href="https://youtu.be/JY5OI74yJ4w">Video</a> -->
+              <button id="bib_button" class="link", onclick="showBib('SkiRT_bib')">BibTex</button>
+              <div id='SkiRT_bib' hidden>
+                <div class="card code-card">
+              Skitt bib
+              </div>
+              </div>
+
               <p></p>
               <p>The power of point-based digital human representations further unleashed: <i>SkiRT</i> models dynamic shapes of 3D clothed
                 humans including those that wear challenging outfits such as skirts and dresses. 
-                </p>
+                </p> 
+
             </td>
           </tr>
 
@@ -113,7 +122,12 @@
               / <a href="https://github.com/sanweiliti/EgoBody">Code</a>
               / <a href="https://arxiv.org/abs/2112.07642">arXiv</a>
               / <a href="https://youtu.be/yA7BM7zWAKM">Video</a>
-              / <a href="https://codalab.lisn.upsaclay.fr/competitions/6351">&#128293 ECCV Challenge</a>
+              / <button id="bib_button" class="link", onclick="showBib('EboBody_bib')">BibTex</button>
+              <div id='EboBody_bib' hidden>
+                <div class="card code-card">
+                  EboBody_bib bib
+              </div>
+              </div>
 
               <p></p>
               <p>A large-scale dataset of accurate 3D body shape, pose and motion of humans interacting in 3D scenes,
@@ -144,7 +158,14 @@
               <a href="https://github.com/qianlim/POP">Code</a> /
               <a href="https://pop.is.tue.mpg.de/">Dataset</a> /
               <a href="https://arxiv.org/abs/2109.01137">arXiv</a> /
-              <a href="https://youtu.be/JY5OI74yJ4w">Video</a>
+              <a href="https://youtu.be/JY5OI74yJ4w">Video</a> / 
+              <button id="bib_button" class="link", onclick="showBib('POP_bib')">BibTex</button>
+              <div id='POP_bib' hidden>
+                <div class="card code-card">
+                  POP bib    
+              </div>
+              </div>
+
               <p></p>
               <p>PoP — a point-based, unified model for multiple subjects and outfits that can turn a <b>single, static</b> 3D scan into an
                 animatable avatar with natural pose-dependent clothing deformations.</p>
@@ -174,9 +195,14 @@
               <a href="https://neuralbodies.github.io/metavatar/">Project Page</a> /
               <a href="https://github.com/taconite/MetaAvatar-release">Code</a> /
               <a href="https://arxiv.org/abs/2106.11944">arXiv</a> /
-              <a href="https://youtu.be/AwOwdKxuBXE">Video</a>
+              <a href="https://youtu.be/AwOwdKxuBXE">Video</a> / 
               
-              
+              <button id="bib_button" class="link", onclick="showBib('MetaAvatar_bib')">BibTex</button>
+              <div id='MetaAvatar_bib' hidden>
+                <div class="card code-card">
+                  Metaavatar bib
+              </div>
+              </div>
 
               <p></p>
               <!-- <p>A multi-subject, articulated, neural signed distance field model for clothed humans, which can fast -->
@@ -209,7 +235,13 @@
               <a href="https://qianlim.github.io/SCALE">Project Page</a> /
               <a href="https://github.com/qianlim/SCALE">Code</a> /
               <a href="https://arxiv.org/abs/2104.07660">arXiv</a> /
-              <a href="https://youtu.be/-EvWqFCUb7U">Video</a>
+              <a href="https://youtu.be/-EvWqFCUb7U">Video</a> /
+              <button id="bib_button" class="link", onclick="showBib('SCALE_bib')">BibTex</button>
+              <div id='SCALE_bib' hidden>
+                <div class="card code-card">
+                  SCALE_bib
+              </div>
+              </div>
               
               <p></p>
               <p>Modeling pose-dependent shapes of clothed humans explicitly with hundreds of articulated surface elements:
@@ -238,7 +270,13 @@
               <a href="https://scanimate.is.tue.mpg.de/">Project Page</a> /
               <a href="https://github.com/shunsukesaito/SCANimate">Code</a> /
               <a href="https://arxiv.org/abs/2104.03313">arXiv</a> / 
-              <a href="https://youtu.be/EeNFvmNuuog">Video</a>
+              <a href="https://youtu.be/EeNFvmNuuog">Video</a> /
+              <button id="bib_button" class="link", onclick="showBib('SCANimate_bib')">BibTex</button>
+              <div id='SCANimate_bib' hidden>
+                <div class="card code-card">
+                  SCANimate_bib
+              </div>
+              </div>
               <p></p>
               <!-- <p>Creating an animatable avatar with pose-dependent clothing deformation from <b>raw scans</b> without template surface registration.</p> -->
               <p>Cycle-consistent implicit skinning fields + locally pose-aware implicit function = a 
@@ -271,7 +309,13 @@
               <a href="https://sanweiliti.github.io/PLACE/PLACE.html">Project Page</a> /
               <a href="https://github.com/sanweiliti/PLACE">Code</a> / 
               <a href="https://arxiv.org/abs/2008.05570">arXiv</a> /
-              <a href="https://youtu.be/zJ1hbtMHGrw">Video</a>         
+              <a href="https://youtu.be/zJ1hbtMHGrw">Video</a> / 
+              <button id="bib_button" class="link", onclick="showBib('PLACE_bib')">BibTex</button>
+              <div id='PLACE_bib' hidden>
+                <div class="card code-card">
+                  PLACE bib
+              </div>
+              </div>      
               <p></p>
               <p>An explicit representation for 3D person-​scene contact relations that enables 
                 automated synthesis of realistic humans posed naturally in a given scene.</p>
@@ -306,7 +350,14 @@
               <a href="https://arxiv.org/abs/1907.13615">arXiv</a> / 
               <a href="https://youtu.be/e4W-hPFNwDE">Full Video</a> /
               <a href="https://youtu.be/NOEA-Rtq6vM">1-min Video</a> / 
-              <a href="https://cape.is.tue.mpg.de/uploads/ckeditor/attachments/211/CAPE_slides.pdf">Slides</a>
+              <a href="https://cape.is.tue.mpg.de/uploads/ckeditor/attachments/211/CAPE_slides.pdf">Slides</a> /
+              <button id="bib_button" class="link", onclick="showBib('CAPE_bib')">BibTex</button>
+              <div id='CAPE_bib' hidden>
+                <div class="card code-card">
+                  CAPE_bib
+              </div>
+              </div>
+
               <p></p>
               <p><i>CAPE</i> &mdash; a graph-CNN-based generative model and a large-scale dataset
                  for 3D human meshes in clothing in varied poses and garment types.</p>
@@ -325,7 +376,7 @@
     <td>
       <p style="text-align:right;">
       <font size="2">
-      Template adapted from <a href="https://leonidk.com/"><font size="2">this awesome page</font></a>.
+      Template adapted from <a href="https://jonbarron.info/"><font size="2">John Barron</font></a>.
       </font>
       </p>
     </td>
@@ -333,7 +384,14 @@
 
   </table>
 
-
 </body>
-
 </html>
+<!-- <script>
+  function showBib(){
+    document.getElementById("light1_text").hidden = document.getElementById("light1_text").hidden? false : true;
+    let btext = document.getElementById("light1_butt").innerText;
+    document.getElementById("light1_butt").innerText = (btext[0] == 'H')? btext.replace("Hide","Show") : btext.replace("Show","Hide");
+    }
+  </script>
+</body>
+</html> -->
