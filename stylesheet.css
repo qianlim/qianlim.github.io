@@ -107,6 +107,36 @@ name {
   font-size: 32px;
 }
 
+pre {
+  overflow-x: auto;
+  text-align: left;
+  border: 0.5px solid rgb(215, 215, 215);
+  border-radius: 6px;
+  background: rgba(239,239,239,0.6);
+  padding: 5px 5px 5px 10px;
+  line-height: 1.2;
+  white-space: pre-wrap;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  /*optional*/
+  font-family: 'Helvetica Neue-Light', 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 16px;
+  /*input has OS specific font-family*/
+  color: #069;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button:hover{
+  color: #f09228;
+  text-decoration: none;
+}
+
+
 .one {
   width: 160px;
   height: 160px;
@@ -132,16 +162,6 @@ name {
   background-color: rgba(239,239,239,0.66);
 }
 
-pre {
-  overflow-x: auto;
-  text-align: left;
-  border: 0.5px solid rgb(215, 215, 215);
-  border-radius: 6px;
-  background: rgba(239,239,239,0.6);
-  padding: 5px 5px 5px 10px;
-  line-height: 1.2;
-  white-space: pre-wrap;
-}
 
 /* pre code {
   text-align: left;
@@ -152,21 +172,4 @@ pre {
 
 span.highlight {
   background-color: #ffffd0;
-}
-button {
-  background: none!important;
-  border: none;
-  padding: 0!important;
-  /*optional*/
-  font-family: 'Helvetica Neue-Light', 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 16px;
-  /*input has OS specific font-family*/
-  color: #069;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-button:hover{
-  color: #f09228;
-  text-decoration: none;
 }
