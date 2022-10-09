@@ -6,8 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-solarizedlight.min.css"/> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs-bibtex@2.0.1/prism-bibtex.min.js"></script> -->
   <link rel="icon" type="image/png" href="images/icon.png">
   <script type="text/javascript" src="./show_bib.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script> -->
+
 </head>
 
 <body>
@@ -33,10 +41,11 @@
               a current focus on 3D representations and deformable 3D shape modeling.
               </p>
               <p style="text-align:left">
-                <a href="mailto:qma@tue.mpg.de">Email</a> &nbsp/&nbsp
-                <a href="https://scholar.google.com/citations?user=ks-bHqsAAAAJ&hl=en">Google Scholar</a> &nbsp/&nbsp
-                <a href="https://twitter.com/qianli_m">Twitter</a> &nbsp/&nbsp
-                <a href="https://github.com/qianlim/">Github</a>
+                <a href="mailto:qma@tue.mpg.de"><i class="fa fa-paper-plane"></i>&nbsp&nbspEmail</a></a> &nbsp/&nbsp
+                <a href="https://scholar.google.com/citations?user=ks-bHqsAAAAJ&hl=en"><i class="ai ai-google-scholar ai-fw" style="font-size: 1.3em;position: relative; top:0.1em;margin-left: -0.3em;"></i>Google Scholar</a> &nbsp/&nbsp
+                <!-- <a href="https://scholar.google.com/citations?user=ks-bHqsAAAAJ&hl=en"><i class="ai ai-google-scholar ai-fw" style="font-size: 1.3em;position: relative; top:0.1em;margin-left: -0.3em;"></i>Google Scholar</a> &nbsp/&nbsp -->
+                <a href="https://twitter.com/qianli_m"><i class="fa fa-twitter"></i>&nbsp&nbspTwitter</a> &nbsp/&nbsp
+                <a href="https://github.com/qianlim/"><i class="fa fa-github"></i>&nbsp&nbspGithub</a>
                 
               </p>
             </td>
@@ -79,16 +88,19 @@
               <!-- <a href="https://youtu.be/JY5OI74yJ4w">Video</a> -->
               <button id="bib_button" class="link", onclick="showBib('SkiRT_bib')">BibTex</button>
               <div id='SkiRT_bib' hidden>
-                <div class="card code-card">
-              Skitt bib
-              </div>
+              <pre><code>@inproceedings{SkiRT:3DV:2022,
+  title = {Neural Point-based Shape Modeling of Humans in Challenging Clothing},
+  author = {Ma, Qianli and Yang, Jinlong and Black, Michael J. and Tang, Siyu},
+  booktitle = {International Conference on 3D Vision (3DV)},
+  month = sep,
+  year = {2022},
+}</code></pre>
               </div>
 
               <p></p>
               <p>The power of point-based digital human representations further unleashed: <i>SkiRT</i> models dynamic shapes of 3D clothed
                 humans including those that wear challenging outfits such as skirts and dresses. 
                 </p> 
-
             </td>
           </tr>
 
@@ -124,9 +136,13 @@
               / <a href="https://youtu.be/yA7BM7zWAKM">Video</a>
               / <button id="bib_button" class="link", onclick="showBib('EboBody_bib')">BibTex</button>
               <div id='EboBody_bib' hidden>
-                <div class="card code-card">
-                  EboBody_bib bib
-              </div>
+              <pre><code class="language-bibtex">@inproceedings{Egobody:ECCV:2022,
+  title = {{EgoBody}: Human Body Shape and Motion of Interacting People from Head-Mounted Devices},
+  author = {Zhang, Siwei and Ma, Qianli and Zhang, Yan and Qian, Zhiyin and Kwon, Taein and Pollefeys, Marc and Bogo, Federica and Tang, Siyu},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  month = oct,
+  year = {2022}
+}</code></pre>
               </div>
 
               <p></p>
@@ -160,10 +176,15 @@
               <a href="https://arxiv.org/abs/2109.01137">arXiv</a> /
               <a href="https://youtu.be/JY5OI74yJ4w">Video</a> / 
               <button id="bib_button" class="link", onclick="showBib('POP_bib')">BibTex</button>
-              <div id='POP_bib' hidden>
-                <div class="card code-card">
-                  POP bib    
-              </div>
+              <div id='POP_bib' hidden>           
+                <pre><code>@inproceedings{POP:ICCV:2021,
+  title = {The Power of Points for Modeling Humans in Clothing},
+  author = {Ma, Qianli and Yang, Jinlong and Tang, Siyu and Black, Michael J.},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  pages = {10974--10984},
+  month = oct,
+  year = {2021},
+}</code></pre>
               </div>
 
               <p></p>
@@ -199,11 +220,15 @@
               
               <button id="bib_button" class="link", onclick="showBib('MetaAvatar_bib')">BibTex</button>
               <div id='MetaAvatar_bib' hidden>
-                <div class="card code-card">
-                  Metaavatar bib
+              <pre><code>@inproceedings{MetaAvatar:NeurIPS:2021,
+  title = {{MetaAvatar}: Learning Animatable Clothed Human Models from Few Depth Images},
+  author={Wang, Shaofei and Mihajlovic, Marko and Ma, Qianli and Geiger, Andreas and Tang, Siyu},
+  journal={Advances in Neural Information Processing Systems},
+  volume={34},
+  pages={2810--2822},
+  year={2021}
+}</code></pre>
               </div>
-              </div>
-
               <p></p>
               <!-- <p>A multi-subject, articulated, neural signed distance field model for clothed humans, which can fast -->
                 <!-- create an avatar of unseen subjects from as few as 8 monocular depth images.</p> -->
@@ -238,9 +263,14 @@
               <a href="https://youtu.be/-EvWqFCUb7U">Video</a> /
               <button id="bib_button" class="link", onclick="showBib('SCALE_bib')">BibTex</button>
               <div id='SCALE_bib' hidden>
-                <div class="card code-card">
-                  SCALE_bib
-              </div>
+                <pre><code>@inproceedings{SCALE:CVPR:2021,
+  title = {{SCALE}: Modeling Clothed Humans with a Surface Codec of Articulated Local Elements},
+  author = {Ma, Qianli and Saito, Shunsuke and Yang, Jinlong and Tang, Siyu and Black, Michael J.},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages = {16082-16093},
+  year = {2021}
+  month = jun,
+}</code></pre>
               </div>
               
               <p></p>
@@ -273,9 +303,14 @@
               <a href="https://youtu.be/EeNFvmNuuog">Video</a> /
               <button id="bib_button" class="link", onclick="showBib('SCANimate_bib')">BibTex</button>
               <div id='SCANimate_bib' hidden>
-                <div class="card code-card">
-                  SCANimate_bib
-              </div>
+                <pre><code>@inproceedings{SCANimate:CVPR:2021,
+  title={{SCANimate}: Weakly Supervised Learning of Skinned Clothed Avatar Networks},
+  author={Saito, Shunsuke and Yang, Jinlong and Ma, Qianli and Black, Michael J},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={2886--2897},
+  year={2021},
+  month=jun,
+}</code></pre>
               </div>
               <p></p>
               <!-- <p>Creating an animatable avatar with pose-dependent clothing deformation from <b>raw scans</b> without template surface registration.</p> -->
@@ -312,9 +347,13 @@
               <a href="https://youtu.be/zJ1hbtMHGrw">Video</a> / 
               <button id="bib_button" class="link", onclick="showBib('PLACE_bib')">BibTex</button>
               <div id='PLACE_bib' hidden>
-                <div class="card code-card">
-                  PLACE bib
-              </div>
+              <pre><code>@inproceedings{PLACE:3DV:2020,
+  title = {{PLACE}: Proximity Learning of Articulation and Contact in {3D} Environments},
+  author = {Zhang, Siwei and Zhang, Yan and Ma, Qianli and Black, Michael J. and Tang, Siyu},
+  booktitle = {International Conference on 3D Vision (3DV)},
+  month = nov,
+  year = {2020},
+}</code></pre>
               </div>      
               <p></p>
               <p>An explicit representation for 3D person-​scene contact relations that enables 
@@ -346,16 +385,20 @@
               <br>
               <a href="https://cape.is.tue.mpg.de/">Project Page</a> /
               <a href="https://github.com/QianliM/CAPE">Code</a> / 
-              <a href="https://cape.is.tue.mpg.de/dataset">Dataset</a> /
+              <a href="https://cape.is.tue.mpg.de/dataset.html">Dataset</a> /
               <a href="https://arxiv.org/abs/1907.13615">arXiv</a> / 
               <a href="https://youtu.be/e4W-hPFNwDE">Full Video</a> /
               <a href="https://youtu.be/NOEA-Rtq6vM">1-min Video</a> / 
-              <a href="https://cape.is.tue.mpg.de/uploads/ckeditor/attachments/211/CAPE_slides.pdf">Slides</a> /
               <button id="bib_button" class="link", onclick="showBib('CAPE_bib')">BibTex</button>
               <div id='CAPE_bib' hidden>
-                <div class="card code-card">
-                  CAPE_bib
-              </div>
+              <pre><code>inproceedings{CAPE:CVPR:20,
+  title = {Learning to Dress {3D} People in Generative Clothing},
+  author = {Ma, Qianli and Yang, Jinlong and Ranjan, Anurag and Pujades, Sergi and Pons-Moll, Gerard and Tang, Siyu and Black, Michael J.},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pages={6468-6477},
+  month = jun,
+  year = {2020},
+}</code></pre>
               </div>
 
               <p></p>
@@ -383,15 +426,5 @@
     <tr/>
 
   </table>
-
 </body>
 </html>
-<!-- <script>
-  function showBib(){
-    document.getElementById("light1_text").hidden = document.getElementById("light1_text").hidden? false : true;
-    let btext = document.getElementById("light1_butt").innerText;
-    document.getElementById("light1_butt").innerText = (btext[0] == 'H')? btext.replace("Hide","Show") : btext.replace("Show","Hide");
-    }
-  </script>
-</body>
-</html> -->

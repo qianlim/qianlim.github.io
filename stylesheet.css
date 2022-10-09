@@ -132,18 +132,18 @@ name {
   background-color: rgba(239,239,239,0.66);
 }
 
-/* pre {
+pre {
   overflow-x: auto;
   text-align: left;
-  border: 1px solid grey;
-  border-radius: 3px;
-  background: #eeeeee;
+  border: 0.5px solid rgb(215, 215, 215);
+  border-radius: 6px;
+  background: rgba(239,239,239,0.6);
   padding: 5px 5px 5px 10px;
   line-height: 1.2;
   white-space: pre-wrap;
 }
 
-pre code {
+/* pre code {
   text-align: left;
   word-wrap: normal;
   white-space: pre-wrap;
@@ -170,4 +170,3 @@ button:hover{
   color: #f09228;
   text-decoration: none;
 }
-
