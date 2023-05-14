@@ -29,16 +29,16 @@
                 <name>Qianli Ma</name>
               </p>
               <p>I am a PhD student at the <a href="https://ps.is.tuebingen.mpg.de/">Max Planck Institute for Intelligent Systems</a>
-                and <a href="https://vlg.inf.ethz.ch/">ETH Zürich</a>, co-supervised by 
+                and <a href="https://vlg.inf.ethz.ch/">ETH Zürich</a>, co-advised by 
                 <a href="https://ps.is.tuebingen.mpg.de/person/black">Michael Black</a> and 
                 <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang </a>.
-                I am also associated to the <a href="https://learning-systems.org/">Max Planck ETH Center for Learning Systems</a>.
+                I am also an associated fellow at the <a href="https://learning-systems.org/">Max Planck ETH Center for Learning Systems</a>.
                 Prior to this, I received my Master's degree in Optics and Photonics from Karlsruhe Institute of Technology
                 and Bachelor's degree in Physics from Peking University.
               </p>
               <p>
               My research uses machine learning to solve computer vision and graphics problems, with 
-              a current focus on 3D representations and deformable 3D shape modeling.
+              a current focus on generative models, deformable 3D shape modeling, and their application in creating realistic 3D virtual human models.
               </p>
               <p style="text-align:left">
                 <a href="mailto:qma@tue.mpg.de"><i class="fa fa-paper-plane"></i>&nbsp&nbspEmail</a></a> &nbsp/&nbsp
@@ -63,6 +63,87 @@
         </tbody></table>
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <img src='images/dpf.png' width=180; height="auto">
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://sergeyprokudin.github.io/dpf">
+                <font color=#1772d0>  <papertitle>Dynamic Point Fields</papertitle></font>
+              </a>
+              <br>
+              <a href=https://vlg.inf.ethz.ch/team/Dr-Sergey-Prokudin.html>Sergey Prokudin</a>, 
+              <strong>Qianli Ma</strong>, 
+              <a href=https://maximeraafat.github.io/about>Maxime Raafat</a>,
+              <a href=https://scholar.google.co.uk/citations?user=pZPD0hMAAAAJ&hl=en>Julien Valentin</a>,
+              <a href=https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html>Siyu Tang</a>
+              <br>
+              <em>arXiv preprint</em>, 2023
+              <br>
+              <a href="https://sergeyprokudin.github.io/dpf">Project Page</a> /
+              <!-- <a href="https://github.com/qianlim/SkiRT">Code</a> / -->
+              <a href="https://arxiv.org/abs/2304.02626">arXiv</a> /
+              <!-- <a href="https://youtu.be/JY5OI74yJ4w">Video</a> -->
+              <button id="bib_button" class="link", onclick="showBib('DPF_bib')">BibTex</button>
+              <div id='DPF_bib' hidden>
+              <pre><code>@article{prokudin2023dynamic,
+    title={Dynamic Point Fields},
+    author={Prokudin, Sergey and Ma, Qianli and Raafat, Maxime and Valentin, Julien and Tang, Siyu},
+    journal={arXiv preprint arXiv:2304.02626},
+    year={2023}
+  }</code></pre>
+              </div>
+              <p></p>
+              <p>Explicit point cloud representation + time-dependent implicit deformation field = dynamic 
+                surface models with instant inference and high quality geometry. 
+                Robust single-scan animation of challenging clothing types even under extreme poses (see left figure).
+                </p> 
+          <tr>
+            <td style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <img src='images/egohmr.jpg' width=180; height="auto">
+              </div>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://sanweiliti.github.io/egohmr/egohmr.html">
+              <font color=#1772d0>  <papertitle>Probabilistic Human Mesh Recovery in 3D Scenes from Egocentric Views</papertitle></font>
+              </a>
+              <br>
+              <a href="https://vlg.inf.ethz.ch/team/Siwei-Zhang.html">Siwei Zhang</a>,
+              <strong>Qianli Ma</strong>,
+              <a href="https://yz-cnsdqz.github.io/">Yan Zhang</a>,
+              <a href="https://sadegh-aa.github.io/">Sadegh Aliakbarian</a>,
+              <a href="http://www.cs.bath.ac.uk/~dpc/">Darren Cosker</a>,
+              <a href=https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html>Siyu Tang</a>
+              <br>
+              <em>arXiv preprint</em>, 2023
+              <br>
+              <a href="https://sanweiliti.github.io/egohmr/egohmr.html">Project Page</a> /
+              <!-- <a href="https://github.com/qianlim/SkiRT">Code</a> / -->
+              <a href="https://arxiv.org/abs/2304.06024">arXiv</a> /
+              <!-- <a href="https://youtu.be/JY5OI74yJ4w">Video</a> -->
+              <button id="bib_button" class="link", onclick="showBib('EgoHMR_bib')">BibTex</button>
+              <div id='EgoHMR_bib' hidden>
+              <pre><code>@article{
+   zhang2023probabilistic,
+   title = {Probabilistic Human Mesh Recovery in 3D Scenes from Egocentric Views},
+   author = {Siwei Zhang, Qianli Ma, Yan Zhang, Sadegh Aliakbarian, Darren Cosker, Siyu Tang},
+   booktitle = {arXiv preprint arXiv:2304.06024},
+   month = Apr,
+   year = {2023}
+}</code></pre>
+              </div>
+
+              <p></p>
+              <p>Reconstructing 3D human mesh from truncated/occluded egocentric view images in 3D environments: 
+                our scene-conditioned diffusion model + collision score-guided sampling yields accurate pose estimation on observed
+                body parts & plausible, diverse generation of unobserved ones.
+                </p> 
+            </td>
+          </tr>
+
 
           <tr>
             <td style="padding:20px;width:25%;vertical-align:middle">
