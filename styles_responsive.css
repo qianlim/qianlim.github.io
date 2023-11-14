@@ -5,7 +5,7 @@
     gap: 20px;
     align-items: center;
     margin: 0 auto;
-    max-width: 960px;
+    max-width: 1000px;
   }
 
 
@@ -13,7 +13,7 @@
     align-items: center;
     margin: 0 auto;
     padding: 40px;
-    max-width: 960px;
+    max-width: 1000px;
 }
   
   .item {
@@ -47,7 +47,7 @@
     align-items: center;
     margin: 0 auto;
     margin-top: 6px;
-    max-width: 960px;
+    max-width: 1000px;
   }
 
 .text2 {
