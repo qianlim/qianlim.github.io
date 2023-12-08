@@ -64,7 +64,7 @@
 }
 
 a {
-  color: #1772d0;
+  color: #1e5f9f;
   text-decoration: none;
 }
 
@@ -82,28 +82,39 @@ th,
 tr,
 p,
 a {
-  font-family: 'Helvetica Neue-Light', 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 16px
 }
 
 strong {
-  font-family: 'Helvetica Neue-Light', 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 16px;
+}
+
+conf {
+  font-family: 'Optima', 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 16px;
+  font-style: italic;
 }
 
 heading {
-  font-family: 'Helvetica Neue-Light', 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 24px;
+  font-family: 'Optima', 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 28px;
 }
 
 papertitle {
-  font-family: 'Helvetica Neue-Light', 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 16px;
-  font-weight: 700
+  font-family: 'Optima', 'Lato', Verdana, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color:#000000;
+}
+
+papertitle:hover{
+  color:#818181;
 }
 
 name {
-  font-family: 'Helvetica Neue-Light', 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Optima', 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 32px;
 }
 
@@ -123,10 +134,10 @@ button {
   border: none;
   padding: 0;
   /*optional*/
-  font-family: 'Helvetica Neue-Light', 'Lato', Verdana, Helvetica, sans-serif;
+  font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 16px;
   /*input has OS specific font-family*/
-  color:#1772d0;
+  color:#1e5f9f;
   text-decoration: none;
   cursor: pointer;
 }

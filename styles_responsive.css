@@ -2,10 +2,10 @@
 .container {
     display: grid;
     grid-template-columns: 70% 30%;
-    gap: 20px;
+    gap: 10px;
     align-items: center;
     margin: 0 auto;
-    max-width: 1000px;
+    max-width: 1040px;
   }
 
 
@@ -13,7 +13,7 @@
     align-items: center;
     margin: 0 auto;
     padding: 40px;
-    max-width: 1000px;
+    max-width: 1020px;
 }
   
   .item {
@@ -42,12 +42,12 @@
 .container2 {
     font-family: 'Lato';
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 24% 76%;
     gap: 10px;
     align-items: center;
     margin: 0 auto;
     margin-top: 6px;
-    max-width: 1000px;
+    max-width: 1040px;
   }
 
 .text2 {
@@ -59,7 +59,7 @@
     max-width: 100%; 
     width: 100%;
     max-height: auto; 
-    max-width: 200px;
+    max-width: 220px;
     margin: 10px 0;
   }
 
@@ -79,7 +79,7 @@
 
 
 hr {
-  border: 0.1px solid #ECECEC; /* Set the border style, color, and width */
+  border: 0.1px solid #e0e0e0; /* Set the border style, color, and width */
   margin: 0px 0px; /* Add some space above and below the line */
 }
 
