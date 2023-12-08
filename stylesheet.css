@@ -64,7 +64,7 @@
 }
 
 a {
-  color: #1e5f9f;
+  color: #1e5fa1;
   text-decoration: none;
 }
 
@@ -137,7 +137,7 @@ button {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 16px;
   /*input has OS specific font-family*/
-  color:#1e5f9f;
+  color:#1e5fa1;
   text-decoration: none;
   cursor: pointer;
 }
