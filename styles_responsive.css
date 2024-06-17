@@ -16,7 +16,7 @@
     max-width: 1020px;
     
     border: 1px solid #ECECEC; /* Light grey border for subtlety */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6); /* Subtle shadow for depth */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
     /* border-radius: 1px; */
     background-color: #FFF; /* Ensures background is white */
 }
