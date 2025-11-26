@@ -215,15 +215,19 @@
         }
 
         @media (max-width: 850px) {
-            h1.masthead-title { font-size: 2.5rem; }
+            h1.masthead-title { font-size: 2.5rem; margin: 0 0 4px 0; }
             .header-body { flex-direction: column-reverse; align-items: flex-start; gap: 20px; }
             .intro-col { max-width: 100%; }
-            .photo-col { width: 100%; max-width: 300px; }
+            .photo-col { width: 100%; max-width: 300px; justify-content: center; }
 
             .grid-container { 
                 display: flex; 
                 flex-direction: column; 
                 gap: 32px; 
+            }
+
+            .pub-item {
+                display: block;
             }
 
             .pub-meta { 
@@ -236,16 +240,18 @@
                 line-height: 1.4;
             }
 
+            .pub-meta br {
+                display: none;
+            }
+
             .pub-visual { 
-                order: 1;
                 border-top: none; 
                 padding-top: 0; 
-                width: 100%; 
+                width: 80%;
                 max-width: 400px; 
-                margin-bottom: 8px;
+                margin: 8px auto 0;
             }
             .pub-content { 
-                order: 2;
                 border-top: none; 
                 padding-top: 0; 
             }
