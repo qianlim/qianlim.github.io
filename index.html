@@ -215,15 +215,15 @@
         }
 
         @media (max-width: 850px) {
-            h1.masthead-title { font-size: 2.5rem; margin: 0 0 4px 0; }
+            h1.masthead-title { font-size: 2.5rem; margin: 0 0 20px 0; }
             .header-body { flex-direction: column-reverse; align-items: flex-start; gap: 20px; }
             .intro-col { max-width: 100%; }
-            .photo-col { width: 100%; max-width: 300px; justify-content: center; }
+            .photo-col { width: 80%; max-width: 240px; justify-content: flex-start; }
 
             .grid-container { 
                 display: flex; 
                 flex-direction: column; 
-                gap: 32px; 
+                gap: 36px;
             }
 
             .pub-item {
@@ -238,6 +238,7 @@
                 color: #000; 
                 font-weight: bold;
                 line-height: 1.4;
+                margin-bottom: 6px;
             }
 
             .pub-meta br {
@@ -247,16 +248,16 @@
             .pub-visual { 
                 border-top: none; 
                 padding-top: 0; 
-                width: 80%;
+                width: 100%;
                 max-width: 400px; 
-                margin: 8px auto 0;
+                margin: 20px 0 8px;
             }
             .pub-content { 
                 border-top: none; 
                 padding-top: 0; 
             }
 
-            .section-title { margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 10px; }
+            .section-title { margin-bottom: 20px; }
         }
     </style>
     
