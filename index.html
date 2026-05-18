@@ -286,7 +286,7 @@
                 <div class="intro-col">
                     <div class="intro-text">
                         <p>
-                            Hi there! I am a Senior Research Scientist at NVIDIA Research working on the <a href="https://www.nvidia.com/en-us/ai/cosmos/">Cosmos World Foundation Models</a>.
+                            Hi there! I am a senior research scientist and tech lead at <a href="https://research.nvidia.com/labs/cosmos-lab/">NVIDIA CosmosLab</a> working on world model pretraining and distillation.
                             I obtained my PhD at the Max Planck Institute for Intelligent Systems, Tübingen and ETH Zürich, advised by <a href="https://ps.is.tuebingen.mpg.de/person/black">Michael Black</a> and <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>.
                         </p>
                     </div>
@@ -307,6 +307,42 @@
         <h2 class="section-title">Selected Publications</h2>
 
         <div class="grid-container">
+            <div class="pub-item">
+                <div class="pub-meta">
+                    2026 <br> CVPR
+                </div>
+                <div class="pub-content">
+                    <h2 class="pub-title">
+                        SAGE: Scalable Agentic 3D Scene Generation for Embodied AI
+                    </h2>
+                    <div class="pub-authors">
+                        <a href="https://xiahongchi.github.io/">Hongchi Xia</a>, <a href="https://xuan-li.github.io/">Xuan Li</a>, <a href="https://mli0603.github.io/">Zhaoshuo Li</a>, <strong>Qianli Ma</strong>, <a href="https://cnut1648.github.io/">Jiashu Xu</a>, <a href="https://mingyuliu.net/">Ming-Yu Liu</a>, <a href="https://ycui.me/">Yin Cui</a>, <a href="https://tsungyilin.info/">Tsung-Yi Lin</a>, <a href="https://www.cs.cornell.edu/~weichiu/">Wei-Chiu Ma</a>, <a href="https://shenlong.web.illinois.edu/">Shenlong Wang</a>, <a href="https://shurans.github.io/">Shuran Song</a>, <a href="https://weify627.github.io/">Fangyin Wei</a>
+                    </div>
+                    
+                    <div class="pub-desc">
+                        An agentic framework for generating realistic, physically valid, simulator-ready 3D scenes at scale — directly deployable for embodied policy training.
+                    </div>
+                    
+                    <div class="pub-links">
+                        <a href="https://nvlabs.github.io/sage/">Project</a>
+                        <a href="https://arxiv.org/abs/2602.10116">arXiv</a>
+                        <a href="https://huggingface.co/datasets/nvidia/SAGE-10k">SAGE-10k Dataset</a>
+                        <span id="btn_sage" onclick="showBib('bib_sage', 'btn_sage')">BibTeX</span>
+                    </div>
+                    <div id="bib_sage" class="bibtex-container" hidden>
+<pre>@inproceedings{xia2026sage,
+title={{SAGE}: Scalable Agentic {3D} Scene Generation for Embodied AI},
+author={Xia, Hongchi and Li, Xuan and Li, Zhaoshuo and Ma, Qianli and Xu, Jiashu and Liu, Ming-Yu and Cui, Yin and Lin, Tsung-Yi and Ma, Wei-Chiu and Wang, Shenlong and Song, Shuran and Wei, Fangyin},
+booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+year={2026}
+}</pre>
+                    </div>
+                </div>
+                <div class="pub-visual">
+                    <img src="images/sage.gif" alt="SAGE Teaser">
+                </div>
+            </div>
+
             <div class="pub-item">
                 <div class="pub-meta">
                     2026 <br> ICLR
@@ -349,6 +385,42 @@ year={2026}
                 </div>
                 <div class="pub-content">
                     <h2 class="pub-title">
+                        DreamDojo: A Generalist Robot World Model from Large-Scale Human Videos
+                    </h2>
+                    <div class="pub-authors">
+                        NVIDIA: <strong>Qianli Ma</strong> (contributor)
+                    </div>
+                    
+                    <div class="pub-desc">
+                        A generalist robot world model pretrained on human egocentric videos, with strong generalization to diverse objects and environments and real-time 10 FPS long-horizon rollouts.
+                    </div>
+                    
+                    <div class="pub-links">
+                        <a href="https://dreamdojo-world.github.io/">Project</a>
+                        <a href="https://github.com/NVIDIA/DreamDojo">Code</a>
+                        <a href="https://arxiv.org/abs/2602.06949">arXiv</a>
+                        <span id="btn_dreamdojo" onclick="showBib('bib_dreamdojo', 'btn_dreamdojo')">BibTeX</span>
+                    </div>
+                    <div id="bib_dreamdojo" class="bibtex-container" hidden>
+<pre>@article{gao2026dreamdojo,
+title={DreamDojo: A Generalist Robot World Model from Large-Scale Human Videos},
+author={Gao, Shenyuan and Liang, William and Zheng, Kaiyuan and Malik, Ayaan and Ye, Seonghyeon and Yu, Sihyun and Tseng, Wei-Cheng and Dong, Yuzhu and Mo, Kaichun and Lin, Chen-Hsuan and Ma, Qianli and Nah, Seungjun and Magne, Loic and Xiang, Jiannan and Xie, Yuqi and Zheng, Ruijie and Niu, Dantong and Tan, You Liang and Zentner, K.R. and Kurian, George and Indupuru, Suneel and Jannaty, Pooya and Gu, Jinwei and Zhang, Jun and Malik, Jitendra and Abbeel, Pieter and Liu, Ming-Yu and Zhu, Yuke and Jang, Joel and Fan, Linxi},
+journal={arXiv preprint arXiv:2602.06949},
+year={2026}
+}</pre>
+                    </div>
+                </div>
+                <div class="pub-visual">
+                    <video src='images/dreamdojo.mp4' controls autoplay loop muted playsinline></video>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-meta">
+                    2025 <br> Technical Report
+                </div>
+                <div class="pub-content">
+                    <h2 class="pub-title">
                         Cosmos Predict and Transfer 2.5
                     </h2>
                     <div class="pub-authors">
@@ -356,7 +428,7 @@ year={2026}
                     </div>
                     
                     <div class="pub-desc">
-                        The Cosmos 2.5 video foundation models for high-quality visual asset generation.
+                        Improved world simulation with video foundation models for Physical AI.
                     </div>
                     
                     <div class="pub-links">
