@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qianli Ma 马千里</title>
 
-    <meta name="description" content="Senior Research Scientist at NVIDIA Cosmos Lab, working on large-scale multimodal world models. PhD from the Max Planck Institute for Intelligent Systems and ETH Zürich.">
+    <meta name="description" content="Senior Research Scientist &amp; Tech Lead at NVIDIA Cosmos Lab · Large-scale multimodal world models · PhD, MPI-IS and ETH Zürich">
     <meta name="author" content="Qianli Ma">
     <link rel="canonical" href="https://qianlim.github.io/">
 
-    <meta property="og:title" content="Qianli Ma – Senior Research Scientist at NVIDIA Cosmos Lab">
-    <meta property="og:description" content="Senior Research Scientist at NVIDIA Cosmos Lab, working on large-scale multimodal world models.">
+    <meta property="og:title" content="Qianli Ma – Senior Research Scientist &amp; Tech Lead, NVIDIA Cosmos Lab">
+    <meta property="og:description" content="Large-scale multimodal world models · Diffusion distillation · Interactive simulation">
     <meta property="og:url" content="https://qianlim.github.io/">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Qianli Ma – Senior Research Scientist at NVIDIA Cosmos Lab">
-    <meta name="twitter:description" content="Senior Research Scientist at NVIDIA Cosmos Lab, working on large-scale multimodal world models.">
+    <meta name="twitter:title" content="Qianli Ma – Senior Research Scientist &amp; Tech Lead, NVIDIA Cosmos Lab">
+    <meta name="twitter:description" content="Large-scale multimodal world models · Diffusion distillation · Interactive simulation">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -232,7 +232,7 @@
             border-top: 1px solid #ddd;
             padding-top: 12px;
         }
-        .pub-visual img, .pub-visual video {
+        .pub-visual img, .pub-visual video, .pub-visual svg {
             width: 100%;
             height: auto; 
             display: block;
@@ -437,6 +437,99 @@
                 </div>
                 <div class="pub-visual">
                     <video data-src="images/cosmos3.mp4" width="1024" height="576" controls loop muted playsinline preload="none"></video>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-meta">
+                    2026 <br> Technical Report
+                </div>
+                <div class="pub-content">
+                    <h3 class="pub-title">
+                        Causal-rCM: A Unified Teacher-Forcing and Self-Forcing Open Recipe for Autoregressive Diffusion Distillation in Streaming Video Generation and Interactive World Models
+                    </h3>
+                    <div class="pub-authors">
+                        Kaiwen Zheng, Guande He, Min Zhao, Jintao Zhang, Huayu Chen, Jianfei Chen, Chen-Hsuan Lin, Ming-Yu Liu, Jun Zhu, <strong>Qianli Ma</strong>
+                    </div>
+
+                    <div class="pub-desc">
+                        Teacher-forcing consistency models meet self-forcing distribution matching: an open recipe for distilling autoregressive video diffusion into 1–2 step streaming generators and interactive world models.
+                    </div>
+
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2606.25473">arXiv</a>
+                        <button type="button" id="btn_causal_rcm" aria-controls="bib_causal_rcm" aria-expanded="false" onclick="showBib('bib_causal_rcm', 'btn_causal_rcm')">BibTeX</button>
+                    </div>
+                    <div id="bib_causal_rcm" class="bibtex-container" hidden>
+<pre>@misc{zheng2026causalrcmunifiedteacherforcingselfforcing,
+      title={Causal-rCM: A Unified Teacher-Forcing and Self-Forcing Open Recipe for Autoregressive Diffusion Distillation in Streaming Video Generation and Interactive World Models},
+      author={Kaiwen Zheng and Guande He and Min Zhao and Jintao Zhang and Huayu Chen and Jianfei Chen and Chen-Hsuan Lin and Ming-Yu Liu and Jun Zhu and Qianli Ma},
+      year={2026},
+      eprint={2606.25473},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2606.25473},
+}</pre>
+                    </div>
+                </div>
+                <div class="pub-visual">
+                    <svg viewBox="0 0 420 396" role="img" aria-labelledby="crcm-title">
+                        <title id="crcm-title">Causal-rCM three-stage recipe: (1) teacher-forcing turns a bidirectional diffusion model into a causal diffusion model; (2) teacher-forcing consistency distillation (dCM, sCM/MeanFlow), with the causal diffusion model as teacher, gives a causal few-step model; (3) self-forcing DMD, with the bidirectional model as teacher, refines it into the final causal few-step model.</title>
+                        <style>
+                            .crcm-node { font: 500 20px Inter, "Helvetica Neue", Arial, sans-serif; fill: #111; }
+                            .crcm-edge { font: 700 17px "Courier New", monospace; fill: #111; }
+                            .crcm-sub { font: 400 14px "Courier New", monospace; fill: #666; }
+                            .crcm-note { font: italic 400 14px "Courier New", monospace; fill: #888; }
+                            .crcm-badge { font: 600 14px Inter, "Helvetica Neue", Arial, sans-serif; fill: #fff; }
+                            .crcm-tf { fill: #1f5fbf; }
+                            .crcm-sf { fill: #c45a00; }
+                        </style>
+                        <!-- stage 2 highlight: the new teacher-forcing CM step -->
+                        <rect x="4" y="167" width="386" height="62" rx="3" fill="#edf3fc"/>
+                        <!-- teacher (dashed) arrows -->
+                        <g fill="none" stroke="#9a9a9a" stroke-width="1.5" stroke-dasharray="5 4">
+                            <path d="M268 143 C340 143 376 165 376 178 C376 186 370 189 365 189"/>
+                            <path d="M268 33 C360 33 400 55 400 95 L400 280 C400 302 385 308 344 308"/>
+                        </g>
+                        <g fill="#9a9a9a">
+                            <polygon points="356,189 365,184.5 365,193.5"/>
+                            <polygon points="335,308 344,303.5 344,312.5"/>
+                        </g>
+                        <text class="crcm-note" x="296" y="134">teacher</text>
+                        <!-- stage arrows -->
+                        <g stroke="#111" stroke-width="1.6">
+                            <line x1="140" y1="54" x2="140" y2="113"/>
+                            <line x1="140" y1="164" x2="140" y2="223"/>
+                            <line x1="140" y1="274" x2="140" y2="333"/>
+                        </g>
+                        <g fill="#111">
+                            <polygon points="140,122 134.5,112 145.5,112"/>
+                            <polygon points="140,232 134.5,222 145.5,222"/>
+                            <polygon points="140,342 134.5,332 145.5,332"/>
+                            <circle cx="140" cy="88" r="12"/>
+                            <circle cx="140" cy="308" r="12"/>
+                        </g>
+                        <text class="crcm-badge" x="140" y="93" text-anchor="middle">1</text>
+                        <circle cx="140" cy="198" r="12" fill="#1f5fbf"/>
+                        <text class="crcm-badge" x="140" y="203" text-anchor="middle">2</text>
+                        <text class="crcm-badge" x="140" y="313" text-anchor="middle">3</text>
+                        <!-- stage labels -->
+                        <text class="crcm-edge" x="164" y="94"><tspan class="crcm-tf">teacher-forcing</tspan></text>
+                        <text class="crcm-edge" x="164" y="194"><tspan class="crcm-tf">teacher-forcing</tspan> CM</text>
+                        <text class="crcm-sub" x="164" y="213">dCM, sCM/MeanFlow</text>
+                        <text class="crcm-edge" x="164" y="314"><tspan class="crcm-sf">self-forcing</tspan> DMD</text>
+                        <!-- models -->
+                        <g fill="#fff" stroke="#111" stroke-width="1.6">
+                            <rect x="12" y="12" width="256" height="42" rx="3"/>
+                            <rect x="12" y="122" width="256" height="42" rx="3"/>
+                            <rect x="12" y="232" width="256" height="42" rx="3"/>
+                        </g>
+                        <rect x="12" y="342" width="256" height="42" rx="3" fill="#111"/>
+                        <text class="crcm-node" x="140" y="40" text-anchor="middle">Bidirectional Diffusion</text>
+                        <text class="crcm-node" x="140" y="150" text-anchor="middle">Causal Diffusion</text>
+                        <text class="crcm-node" x="140" y="260" text-anchor="middle">Causal Few-Step</text>
+                        <text class="crcm-node" x="140" y="370" text-anchor="middle" style="fill:#fff">Causal Few-Step</text>
+                    </svg>
                 </div>
             </div>
 
