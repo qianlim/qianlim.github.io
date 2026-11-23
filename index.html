@@ -302,6 +302,12 @@
             btn.setAttribute("aria-expanded", String(!bibDiv.hidden));
         }
 
+        // Build the mailto link at runtime so the address never appears in the page source (keeps scrapers off it).
+        document.addEventListener("DOMContentLoaded", function () {
+            var a = document.getElementById("email-link");
+            if (a) { a.href = "mailto:" + ["qianlim", ["nvidia", "com"].join(".")].join("@"); }
+        });
+
         // Load and play each video only when it is near the viewport; pause it when scrolled away.
         document.addEventListener("DOMContentLoaded", function () {
             var videos = document.querySelectorAll("video[data-src]");
@@ -346,7 +352,7 @@
                         </p>
                     </div>
                     <div class="header-links">
-                        <a href="mailto:qma@tue.mpg.de">Email</a>
+                        <a href="#" id="email-link">Email</a>
                         <a href="https://scholar.google.com/citations?user=ks-bHqsAAAAJ&hl=en">Google Scholar</a>
                         <a href="https://www.linkedin.com/in/maqianli/">LinkedIn</a>
                         <a href="https://github.com/qianlim/">GitHub</a>
@@ -457,6 +463,7 @@
                     </div>
 
                     <div class="pub-links">
+                        <a href="https://github.com/NVlabs/rcm">Code</a>
                         <a href="https://arxiv.org/abs/2606.25473">arXiv</a>
                         <button type="button" id="btn_causal_rcm" aria-controls="bib_causal_rcm" aria-expanded="false" onclick="showBib('bib_causal_rcm', 'btn_causal_rcm')">BibTeX</button>
                     </div>
