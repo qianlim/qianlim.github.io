@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qianli Ma 马千里</title>
 
-    <meta name="description" content="Senior Research Scientist at NVIDIA Research focusing on large-scale video world models and multimodal generative modeling. PhD from ETH Zürich and the Max Planck Institute for Intelligent Systems.">
+    <meta name="description" content="Senior Research Scientist at NVIDIA Cosmos Lab, working on large-scale multimodal world models. PhD from the Max Planck Institute for Intelligent Systems and ETH Zürich.">
     <meta name="author" content="Qianli Ma">
     <link rel="canonical" href="https://qianlim.github.io/">
 
-    <meta property="og:title" content="Qianli Ma – Research Scientist at NVIDIA Research">
-    <meta property="og:description" content="Research Scientist at NVIDIA Research focusing on large-scale video world models and multimodal generative modeling.">
+    <meta property="og:title" content="Qianli Ma – Senior Research Scientist at NVIDIA Cosmos Lab">
+    <meta property="og:description" content="Senior Research Scientist at NVIDIA Cosmos Lab, working on large-scale multimodal world models.">
     <meta property="og:url" content="https://qianlim.github.io/">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Qianli Ma – Research Scientist at NVIDIA Research">
-    <meta name="twitter:description" content="Research Scientist at NVIDIA Research focusing on large-scale video world models and multimodal generative modeling.">
+    <meta name="twitter:title" content="Qianli Ma – Senior Research Scientist at NVIDIA Cosmos Lab">
+    <meta name="twitter:description" content="Senior Research Scientist at NVIDIA Cosmos Lab, working on large-scale multimodal world models.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Courier+Prime&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Courier+Prime&family=Belleza&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/icon.png">
 
     <style>
@@ -48,19 +48,26 @@
             margin-bottom: 35px;
             border-bottom: 4px solid #000;
             padding-bottom: 45px;
+            /* Name + intro on the left, photo on the right with its top aligned to the intro text */
+            display: grid;
+            grid-template-columns: minmax(0, 70%) minmax(0, 1fr);
+            column-gap: 40px;
+            align-items: start;
         }
 
         h1.masthead-title {
-            font-family: "Optima", "Lato", Verdana, Helvetica, sans-serif;
+            font-family: "Optima", "Belleza", "Lato", Verdana, Helvetica, sans-serif;
             font-size: 2.5rem;
             font-weight: 600;
+            font-synthesis: none; /* Belleza has no bold; show its regular weight instead of a faux bold */
             letter-spacing: -0.02em;
-            margin: 0 0 -24px 0;
+            margin: 0 0 20px 0;
             line-height: 1;
             color: #000;
         }
-        .header-body { display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
-        .intro-col { max-width: 70%; }
+        h1.masthead-title { grid-column: 1; grid-row: 1; }
+        .header-body { display: contents; }
+        .intro-col { grid-column: 1; grid-row: 2; }
         .intro-text { font-size: 1rem; color: #222; margin-bottom: 20px; line-height: 1.6; }
         .intro-text p { margin-top: 0; margin-bottom: 1em; } 
         .intro-text a,
@@ -90,7 +97,11 @@
         }
         
         .photo-col {
+            grid-column: 2;
+            grid-row: 2;
+            justify-self: end;
             width: 256px;
+            max-width: 100%;
             flex-shrink: 0;
             aspect-ratio: 4/3;
             background: var(--bg-color);
@@ -176,7 +187,7 @@
             font-size: 0.8rem;
         }
         
-        .pub-links a, .pub-links span {
+        .pub-links a, .pub-links button {
             color: var(--text-main);
             text-decoration: none;
             border-bottom: 1px solid var(--text-main);
@@ -185,8 +196,21 @@
             transition: all 0.2s;
             cursor: pointer;
         }
-        
-        .pub-links a:hover, .pub-links span:hover {
+        .pub-links button {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            background: none;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            border-radius: 0;
+            padding: 0;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .pub-links a:hover, .pub-links button:hover {
             background: #000;
             color: #fff;
         }
@@ -215,8 +239,10 @@
         }
 
         @media (max-width: 850px) {
+            body { padding-left: 20px; padding-right: 20px; }
             h1.masthead-title { font-size: 2.5rem; margin: 0 0 20px 0; }
-            .header-body { flex-direction: column-reverse; align-items: flex-start; gap: 20px; }
+            header { display: block; }
+            .header-body { display: flex; flex-direction: column-reverse; align-items: flex-start; gap: 20px; }
             .intro-col { max-width: 100%; }
             .photo-col { width: 80%; max-width: 240px; justify-content: flex-start; }
 
@@ -273,7 +299,29 @@
                 bibDiv.hidden = true;
                 btn.innerText = "BibTeX";
             }
+            btn.setAttribute("aria-expanded", String(!bibDiv.hidden));
         }
+
+        // Load and play each video only when it is near the viewport; pause it when scrolled away.
+        document.addEventListener("DOMContentLoaded", function () {
+            var videos = document.querySelectorAll("video[data-src]");
+            function start(v) {
+                if (!v.getAttribute("src")) { v.src = v.dataset.src; }
+                var p = v.play();
+                if (p && p.catch) { p.catch(function () {}); }
+            }
+            if (!("IntersectionObserver" in window)) {
+                videos.forEach(start);
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) { start(e.target); }
+                    else if (e.target.getAttribute("src")) { e.target.pause(); }
+                });
+            }, { rootMargin: "200px 0px" });
+            videos.forEach(function (v) { io.observe(v); });
+        });
     </script>
 </head>
 <body>
@@ -286,15 +334,22 @@
                 <div class="intro-col">
                     <div class="intro-text">
                         <p>
-                            Hi there! I am a senior research scientist and tech lead at <a href="https://research.nvidia.com/labs/cosmos-lab/">NVIDIA CosmosLab</a> working on world model pretraining and distillation.
-                            I obtained my PhD at the Max Planck Institute for Intelligent Systems, Tübingen and ETH Zürich, advised by <a href="https://ps.is.tuebingen.mpg.de/person/black">Michael Black</a> and <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>.
+                            I am a Senior Research Scientist at NVIDIA Cosmos Lab, working on large-scale multimodal world models.
+                            My work spans model architecture, pre- and mid-training, and diffusion distillation, with a current focus on real-time, interactive generation.
+                        </p>
+                        <p>
+                            I have been a core contributor to every generation of NVIDIA's <a href="https://research.nvidia.com/labs/cosmos-lab/cosmos3">Cosmos</a> world models, and currently lead technical efforts in distillation and <a href="https://research.nvidia.com/labs/cosmos-lab/cosmos-simulation/">interactive simulation</a>.
+                        </p>
+                        <p>
+                            My earlier research focused on 3D representations, reconstruction, and human modeling.
+                            I received my Bachelor's in physics from Peking University and my PhD from the Max Planck Institute for Intelligent Systems and ETH Zürich, advised by Michael Black and Siyu Tang.
                         </p>
                     </div>
                     <div class="header-links">
                         <a href="mailto:qma@tue.mpg.de">Email</a>
                         <a href="https://scholar.google.com/citations?user=ks-bHqsAAAAJ&hl=en">Google Scholar</a>
-                        <a href="https://www.linkedin.com/in/maqianli/">Linkedin</a>
-                        <a href="https://github.com/qianlim/">Github</a>
+                        <a href="https://www.linkedin.com/in/maqianli/">LinkedIn</a>
+                        <a href="https://github.com/qianlim/">GitHub</a>
                         <a href="https://twitter.com/qianli_m">Twitter</a>
                     </div>
                 </div>
@@ -304,7 +359,7 @@
             </div>
         </header>
 
-        <h2 class="section-title">Selected Publications</h2>
+        <h2 class="section-title">Research & Publications</h2>
 
         <div class="grid-container">
             <div class="pub-item">
@@ -312,15 +367,15 @@
                     2026 <br> Technical Report
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
-                        Interactive World Simulation with Cosmos for Physical AI
-                    </h2>
+                    <h3 class="pub-title">
+                        Cosmos Simulation: Interactive World Simulation with Cosmos for Physical AI
+                    </h3>
                     <div class="pub-authors">
-                        NVIDIA: <strong>Qianli Ma</strong> (core contributor)
+                        NVIDIA · Technical lead: causal streaming distillation, multiview and multimodal generation
                     </div>
 
                     <div class="pub-desc">
-                        Cosmos-Simulation turns Cosmos 3 into real-time, interactive world simulators for robot manipulation, controllable visual transfer, and multi-view camera and LiDAR simulation for autonomous driving.
+                        Cosmos Simulation turns Cosmos 3 into real-time, interactive world simulators for robot manipulation, controllable visual transfer, and multi-view camera and LiDAR simulation for autonomous driving.
                     </div>
 
                     <div class="pub-links">
@@ -329,7 +384,7 @@
                         <a href="https://huggingface.co/collections/nvidia/cosmos3-examples">Hugging Face</a>
                         <a href="https://arxiv.org/abs/2611.06627">arXiv</a>
                         <a href="https://developer.nvidia.com/blog/build-world-models-for-interactive-simulation-with-nvidia-cosmos/">Blog</a>
-                        <span id="btn_cosmos3_sim" onclick="showBib('bib_cosmos3_sim', 'btn_cosmos3_sim')">BibTeX</span>
+                        <button type="button" id="btn_cosmos3_sim" aria-controls="bib_cosmos3_sim" aria-expanded="false" onclick="showBib('bib_cosmos3_sim', 'btn_cosmos3_sim')">BibTeX</button>
                     </div>
                     <div id="bib_cosmos3_sim" class="bibtex-container" hidden>
 <pre>@misc{nvidia2026interactiveworldsimulationcosmos,
@@ -344,7 +399,7 @@
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <video src="images/cosmos3-simulation.mp4" poster="images/cosmos3-simulation.jpg" controls autoplay loop muted playsinline aria-label="Cosmos 3 interactive world simulation overview"></video>
+                    <video data-src="images/cosmos3-simulation.mp4" width="1920" height="1080" poster="images/cosmos3-simulation.jpg" aria-label="Cosmos 3 interactive world simulation overview" controls loop muted playsinline preload="none"></video>
                 </div>
             </div>
 
@@ -353,11 +408,11 @@
                     2026 <br> Technical Report
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         Cosmos 3: Omnimodal World Models for Physical AI
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
-                        NVIDIA: <strong>Qianli Ma</strong> (core contributor)
+                        NVIDIA · Technical lead: diffusion distillation, human action pretraining; Core contributor: model architecture, training, evaluation
                     </div>
                     
                     <div class="pub-desc">
@@ -367,10 +422,21 @@
                         <a href="https://research.nvidia.com/labs/cosmos-lab/cosmos3">Website</a>
                         <a href="https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf">Technical Report</a>
                         <a href="https://huggingface.co/collections/nvidia/cosmos3">Code</a>
+                        <a href="https://arxiv.org/abs/2606.02800">arXiv</a>
+                        <button type="button" id="btn_cosmos3" aria-controls="bib_cosmos3" aria-expanded="false" onclick="showBib('bib_cosmos3', 'btn_cosmos3')">BibTeX</button>
+                    </div>
+                    <div id="bib_cosmos3" class="bibtex-container" hidden>
+<pre>@article{nvidia2026cosmos3,
+  title = {Cosmos 3: Omnimodal World Models for Physical AI},
+  author = {{NVIDIA}},
+  journal = {arXiv preprint arXiv:2606.02800},
+  year = {2026},
+  url = {https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf}
+}</pre>
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <video src='images/cosmos3.mp4' controls autoplay loop muted playsinline></video>
+                    <video data-src="images/cosmos3.mp4" width="1024" height="576" controls loop muted playsinline preload="none"></video>
                 </div>
             </div>
 
@@ -379,9 +445,9 @@
                     2026 <br> CVPR
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         SAGE: Scalable Agentic 3D Scene Generation for Embodied AI
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         <a href="https://xiahongchi.github.io/">Hongchi Xia</a>, <a href="https://xuan-li.github.io/">Xuan Li</a>, <a href="https://mli0603.github.io/">Zhaoshuo Li</a>, <strong>Qianli Ma</strong>, <a href="https://cnut1648.github.io/">Jiashu Xu</a>, <a href="https://mingyuliu.net/">Ming-Yu Liu</a>, <a href="https://ycui.me/">Yin Cui</a>, <a href="https://tsungyilin.info/">Tsung-Yi Lin</a>, <a href="https://www.cs.cornell.edu/~weichiu/">Wei-Chiu Ma</a>, <a href="https://shenlong.web.illinois.edu/">Shenlong Wang</a>, <a href="https://shurans.github.io/">Shuran Song</a>, <a href="https://weify627.github.io/">Fangyin Wei</a>
                     </div>
@@ -394,7 +460,7 @@
                         <a href="https://nvlabs.github.io/sage/">Project</a>
                         <a href="https://arxiv.org/abs/2602.10116">arXiv</a>
                         <a href="https://huggingface.co/datasets/nvidia/SAGE-10k">SAGE-10k Dataset</a>
-                        <span id="btn_sage" onclick="showBib('bib_sage', 'btn_sage')">BibTeX</span>
+                        <button type="button" id="btn_sage" aria-controls="bib_sage" aria-expanded="false" onclick="showBib('bib_sage', 'btn_sage')">BibTeX</button>
                     </div>
                     <div id="bib_sage" class="bibtex-container" hidden>
 <pre>@inproceedings{xia2026sage,
@@ -406,7 +472,7 @@ year={2026}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <video src='images/sage_multi_scene.mp4' controls autoplay loop muted playsinline></video>
+                    <video data-src="images/sage_multi_scene.mp4" width="1920" height="1088" controls loop muted playsinline preload="none"></video>
                 </div>
             </div>
 
@@ -415,9 +481,9 @@ year={2026}
                     2026 <br> ICLR
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         Large Scale Diffusion Distillation via Score-Regularized Continuous-Time Consistency
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         Kaiwen Zheng, Yuji Wang, <strong>Qianli Ma</strong>, Huayu Chen, Jintao Zhang, Yogesh Balaji, Jianfei Chen, Ming-Yu Liu, Jun Zhu, Qinsheng Zhang
                     </div>
@@ -430,7 +496,7 @@ year={2026}
                         <a href="https://research.nvidia.com/labs/dir/rcm/">Project</a>
                         <a href="https://github.com/NVlabs/rcm">Code</a>
                         <a href="https://arxiv.org/abs/2510.08431">arXiv</a>
-                        <span id="btn_srctc" onclick="showBib('bib_srctc', 'btn_srctc')">BibTeX</span>
+                        <button type="button" id="btn_srctc" aria-controls="bib_srctc" aria-expanded="false" onclick="showBib('bib_srctc', 'btn_srctc')">BibTeX</button>
                     </div>
                     <div id="bib_srctc" class="bibtex-container" hidden>
 <pre>@inproceedings{zheng2026large,
@@ -442,7 +508,7 @@ year={2026}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <img src="images/rcm.jpg" alt="rCM Teaser">
+                    <img src="images/rcm.jpg" width="800" height="314" loading="lazy" decoding="async" alt="rCM Teaser">
                 </div>
             </div>
 
@@ -451,11 +517,11 @@ year={2026}
                     2026 <br> Technical Report
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         DreamDojo: A Generalist Robot World Model from Large-Scale Human Videos
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
-                        NVIDIA: <strong>Qianli Ma</strong> (contributor)
+                        NVIDIA · Contributor: causal distillation
                     </div>
                     
                     <div class="pub-desc">
@@ -466,7 +532,7 @@ year={2026}
                         <a href="https://dreamdojo-world.github.io/">Project</a>
                         <a href="https://github.com/NVIDIA/DreamDojo">Code</a>
                         <a href="https://arxiv.org/abs/2602.06949">arXiv</a>
-                        <span id="btn_dreamdojo" onclick="showBib('bib_dreamdojo', 'btn_dreamdojo')">BibTeX</span>
+                        <button type="button" id="btn_dreamdojo" aria-controls="bib_dreamdojo" aria-expanded="false" onclick="showBib('bib_dreamdojo', 'btn_dreamdojo')">BibTeX</button>
                     </div>
                     <div id="bib_dreamdojo" class="bibtex-container" hidden>
 <pre>@article{gao2026dreamdojo,
@@ -478,7 +544,7 @@ year={2026}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <video src='images/dreamdojo.mp4' controls autoplay loop muted playsinline></video>
+                    <video data-src="images/dreamdojo.mp4" width="853" height="480" controls loop muted playsinline preload="none"></video>
                 </div>
             </div>
 
@@ -487,11 +553,11 @@ year={2026}
                     2025 <br> Technical Report
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         Cosmos Predict and Transfer 2.5
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
-                        NVIDIA: <strong>Qianli Ma</strong> (core contributor)
+                        NVIDIA · Core contributor: Transfer2.5 architecture, training, evaluation
                     </div>
                     
                     <div class="pub-desc">
@@ -502,7 +568,7 @@ year={2026}
                         <a href="https://research.nvidia.com/labs/dir/cosmos-predict2.5/">Cosmos-Predict2.5</a>
                         <a href="https://research.nvidia.com/labs/dir/cosmos-transfer2.5/">Cosmos-Transfer2.5</a>
                         <a href="https://arxiv.org/abs/2511.00062">arXiv</a>
-                        <span id="btn_cosmos_ws" onclick="showBib('bib_cosmos_ws', 'btn_cosmos_ws')">BibTeX</span>
+                        <button type="button" id="btn_cosmos_ws" aria-controls="bib_cosmos_ws" aria-expanded="false" onclick="showBib('bib_cosmos_ws', 'btn_cosmos_ws')">BibTeX</button>
                     </div>
                     <div id="bib_cosmos_ws" class="bibtex-container" hidden>
 <pre>@misc{nvidia2025worldsimulationvideofoundation,
@@ -514,7 +580,7 @@ year={2026}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <video src='images/cosmos2_teaser_single.mp4' controls autoplay loop muted playsinline playsinline></video>
+                    <video data-src="images/cosmos2_teaser_single.mp4" width="1280" height="704" controls loop muted playsinline preload="none"></video>
                 </div>
             </div>
 
@@ -523,21 +589,21 @@ year={2026}
                     2025 <br> CVPR
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         <a href="https://qingqing-zhao.github.io/">Qingqing Zhao</a>, <a href="https://research.nvidia.com/person/yao-lu-jason">Yao Lu</a>, <a href="https://moojink.com/">Moo Jin Kim</a>, <a href="https://zipengfu.github.io/">Zipeng Fu</a>, <a href="https://hanlab.mit.edu/team/zhuoyang-zhang">Zhuoyang Zhang</a>, <a href="https://openreview.net/profile?id=~Yecheng_Wu1">Yecheng Wu</a>, <a href="https://mli0603.github.io/">Zhaoshuo Li</a>, <strong>Qianli Ma</strong>, <a href="https://hanlab.mit.edu/songhan">Song Han</a>, <a href="https://ai.stanford.edu/~cbfinn/">Chelsea Finn</a>, <a href="https://ankurhanda.github.io/">Ankur Handa</a>, <a href="https://mingyuliu.net/">Ming-Yu Liu</a>, <a href="https://xiangdonglai.github.io/">Donglai Xiang</a>, <a href="https://stanford.edu/~gordonwz/">Gordon Wetzstein</a>, <a href="https://tsungyilin.info/">Tsung-Yi Lin</a>
                     </div>
                     
                     <div class="pub-desc">
-                        Generating subgoal images as a visual chain-of-thought process that improves the long-horizon sequential content generation fidelity.
+                        Generating subgoal images as a visual chain-of-thought process that improves action prediction in complex, long-horizon robot manipulation.
                     </div>
                     
                     <div class="pub-links">
                         <a href="https://cot-vla.github.io/">Project</a>
                         <a href="https://arxiv.org/abs/2503.22020">arXiv</a>
-                        <span id="btn_cotvla" onclick="showBib('bib_cotvla', 'btn_cotvla')">BibTeX</span>
+                        <button type="button" id="btn_cotvla" aria-controls="bib_cotvla" aria-expanded="false" onclick="showBib('bib_cotvla', 'btn_cotvla')">BibTeX</button>
                     </div>
                     <div id="bib_cotvla" class="bibtex-container" hidden>
 <pre>@inproceedings{zhao2025cot,
@@ -550,7 +616,7 @@ year={2025}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <video src='images/cot_vla_video_clip.m4v' controls autoplay loop muted playsinline></video>
+                    <video data-src="images/cot_vla_video_clip.m4v" width="1024" height="576" controls loop muted playsinline preload="none"></video>
                 </div>
             </div>
 
@@ -559,9 +625,9 @@ year={2025}
                     2025 <br> CVPR
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         Articulated Kinematics Distillation from Video Diffusion Models
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         <a href="https://xuan-li.github.io/">Xuan Li</a>, <strong>Qianli Ma</strong>, <a href="https://tsungyilin.info/">Tsung-Yi Lin</a>, <a href="https://yongxin.ae.gatech.edu/">Yongxin Chen</a>, <a href="https://www.math.ucla.edu/~cffjiang/">Chenfanfu Jiang</a>, <a href="https://mingyuliu.net/">Ming-Yu Liu</a>, <a href="https://xiangdonglai.github.io/">Donglai Xiang</a>
                     </div>
@@ -573,7 +639,7 @@ year={2025}
                     <div class="pub-links">
                         <a href="https://research.nvidia.com/labs/dir/akd/">Project</a>
                         <a href="https://arxiv.org/abs/2504.01204">arXiv</a>
-                        <span id="btn_akd" onclick="showBib('bib_akd', 'btn_akd')">BibTeX</span>
+                        <button type="button" id="btn_akd" aria-controls="bib_akd" aria-expanded="false" onclick="showBib('bib_akd', 'btn_akd')">BibTeX</button>
                     </div>
                     <div id="bib_akd" class="bibtex-container" hidden>
 <pre>@inproceedings{li2025articulated,
@@ -586,7 +652,7 @@ year={2025}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <img src="images/akd2.jpg" alt="AKD Teaser">
+                    <img src="images/akd2.jpg" width="875" height="622" loading="lazy" decoding="async" alt="AKD Teaser">
                 </div>
             </div>
 
@@ -595,11 +661,11 @@ year={2025}
                     2025 <br> Technical Report
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         Cosmos-Transfer1: Conditional World Generation with Adaptive Multimodal Control
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
-                        NVIDIA: <strong>Qianli Ma</strong> (core contributor)
+                        NVIDIA · Core contributor: evaluation framework and benchmark, training data curation
                     </div>
                     
                     <div class="pub-desc">
@@ -612,7 +678,7 @@ year={2025}
                         <a href="https://huggingface.co/collections/nvidia/cosmos-transfer1">Hugging Face</a>
                         <a href="https://arxiv.org/abs/2503.14492">arXiv</a>
                         <a href="https://youtu.be/0Yr5SdrVnxc?si=XP6F0ol-hnWVw0bg">Video</a>
-                        <span id="btn_cosmos_t1" onclick="showBib('bib_cosmos_t1', 'btn_cosmos_t1')">BibTeX</span>
+                        <button type="button" id="btn_cosmos_t1" aria-controls="bib_cosmos_t1" aria-expanded="false" onclick="showBib('bib_cosmos_t1', 'btn_cosmos_t1')">BibTeX</button>
                     </div>
                     <div id="bib_cosmos_t1" class="bibtex-container" hidden>
 <pre>@misc{nvidia2025cosmostransfer1,
@@ -624,7 +690,7 @@ year={2025}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <img src='images/CosmosTransfer1.gif'></img>
+                    <img src="images/CosmosTransfer1.gif" width="400" height="225" loading="lazy" decoding="async" alt="Cosmos-Transfer1 Teaser">
                 </div>
             </div>
 
@@ -633,11 +699,11 @@ year={2025}
                     2025 <br> Technical Report <br> <span style="color:#c45a00;">Best of CES '25</span>
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         Cosmos World Foundation Model Platform for Physical AI
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
-                        NVIDIA: <strong>Qianli Ma</strong> (core contributor)
+                        NVIDIA · Core contributor: diffusion pre-training, physics alignment evaluation, data curation
                     </div>
                     
                     <div class="pub-desc">
@@ -655,10 +721,10 @@ year={2025}
                         <a href="https://techcrunch.com/2025/01/06/nvidia-releases-its-own-brand-of-world-models/">TechCrunch</a>
                         <a href="https://www.wired.com/story/nvidia-cosmos-ai-helps-robots-self-driving-cars/">WIRED</a>
                         
-                        <span id="btn_cosmos_platform" onclick="showBib('bib_cosmos_platform', 'btn_cosmos_platform')">BibTeX</span>
+                        <button type="button" id="btn_cosmos_platform" aria-controls="bib_cosmos_platform" aria-expanded="false" onclick="showBib('bib_cosmos_platform', 'btn_cosmos_platform')">BibTeX</button>
                     </div>
                     <div id="bib_cosmos_platform" class="bibtex-container" hidden>
-<pre>@misc{nvidia2025cosmos2p5,
+<pre>@misc{nvidia2025cosmosworldfoundationmodel,
     title     = {Cosmos World Foundation Model Platform for Physical AI},
     author    = {NVIDIA and Agarwal, Niket and Ali, Arslan and Bala, Maciej and Balaji, Yogesh and Barker, Erik and Cai, Tiffany and Chattopadhyay, Prithvijit and Chen, Yongxin and Cui, Yin and Ding, Yifan and Dworakowski, Daniel and Fan, Jiaojiao and Fenzi, Michele and Ferroni, Francesco and Fidler, Sanja and Fox, Dieter and Ge, Songwei and Ge, Yunhao and Gu, Jinwei and Gururani, Siddharth and He, Ethan and Huang, Jiahui and Huffman, Jacob and Jannaty, Pooya and Jin, Jingyi and Kim, Seung Wook and Klár, Gergely and Lam, Grace and Lan, Shiyi and Leal-Taixe, Laura and Li, Anqi and Li, Zhaoshuo and Lin, Chen-Hsuan and Lin, Tsung-Yi and Ling, Huan and Liu, Ming-Yu and Liu, Xian and Luo, Alice and Ma, Qianli and Mao, Hanzi and Mo, Kaichun and Mousavian, Arsalan and Nah, Seungjun and Niverty, Sriharsha and Page, David and Paschalidou, Despoina and Patel, Zeeshan and Pavao, Lindsey and Ramezanali, Morteza and Reda, Fitsum and Ren, Xiaowei and Sabavat, Vasanth Rao Naik and Schmerling, Ed and Shi, Stella and Stefaniak, Bartosz and Tang, Shitao and Tchapmi, Lyne and Tredak, Przemek and Tseng, Wei-Cheng and Varghese, Jibin and Wang, Hao and Wang, Haoxiang and Wang, Heng and Wang, Ting-Chun and Wei, Fangyin and Wei, Xinyue and Wu, Jay Zhangjie and Xu, Jiashu and Yang, Wei and Yen-Chen, Lin and Zeng, Xiaohui and Zeng, Yu and Zhang, Jing and Zhang, Qinsheng and Zhang, Yuxuan and Zhao, Qingqing and Zolkowski, Artur},
     journal   = {arXiv preprint arXiv:2501.03575},
@@ -667,7 +733,7 @@ year={2025}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <video src='images/Cosmos1.mp4' controls autoplay loop muted playsinline></video>
+                    <video data-src="images/Cosmos1.mp4" width="1280" height="720" controls loop muted playsinline preload="none"></video>
                 </div>
             </div>
 
@@ -676,11 +742,11 @@ year={2025}
                     2024 <br> Technical Report
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         Edify 3D: Scalable High-Quality 3D Asset Generation
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
-                        NVIDIA: <strong>Qianli Ma</strong> (core contributor)
+                        NVIDIA · Core contributor: geometry processing and mesh quality optimization, evaluation
                     </div>
                     
                     <div class="pub-desc">
@@ -693,7 +759,7 @@ year={2025}
                         <a href="https://www.youtube.com/watch?v=ROqB8xhKZ6U">Video</a>
                         <a href="https://blogs.nvidia.com/blog/edify-3d-generative-ai-custom-fine-tuning/">Blog</a>
                         <a href="https://youtu.be/DjSipUhjJX8?si=UcrQCck_zAHiKmQC">Two Minute Papers</a>
-                        <span id="btn_edify3d" onclick="showBib('bib_edify3d', 'btn_edify3d')">BibTeX</span>
+                        <button type="button" id="btn_edify3d" aria-controls="bib_edify3d" aria-expanded="false" onclick="showBib('bib_edify3d', 'btn_edify3d')">BibTeX</button>
                     </div>
                     <div id="bib_edify3d" class="bibtex-container" hidden>
 <pre>@article{nvidia2024edify3d,
@@ -705,7 +771,7 @@ year={2025}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <video src='images/Edify3D.mp4' controls autoplay loop muted playsinline></video>
+                    <video data-src="images/Edify3D.mp4" width="750" height="400" controls loop muted playsinline preload="none"></video>
                 </div>
             </div>
 
@@ -714,9 +780,9 @@ year={2025}
                     2024 <br> CVPR
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         Inferring Dynamics from Point Trajectories
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         <a href="https://yz-cnsdqz.github.io/">Yan Zhang</a>, <a href="https://vlg.inf.ethz.ch/team/Dr-Sergey-Prokudin.html">Sergey Prokudin</a>, <a href="https://markomih.github.io">Marko Mihajlovic</a>, <strong>Qianli Ma</strong>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
                     </div>
@@ -730,7 +796,7 @@ year={2025}
                         <a href="https://github.com/yz-cnsdqz/DOMA-release">Code</a>
                         <a href="https://arxiv.org/abs/2406.03625">arXiv</a>
                         <a href="https://youtu.be/CTWZuxu8Wps?si=yB3rvKK5YtF1pPqI">Video</a>
-                        <span id="btn_doma" onclick="showBib('bib_doma', 'btn_doma')">BibTeX</span>
+                        <button type="button" id="btn_doma" aria-controls="bib_doma" aria-expanded="false" onclick="showBib('bib_doma', 'btn_doma')">BibTeX</button>
                     </div>
                     <div id="bib_doma" class="bibtex-container" hidden>
 <pre>@inproceedings{zhang2024degrees,
@@ -744,7 +810,7 @@ year={2024}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <img src="images/doma.png" alt="DOMA Teaser">
+                    <img src="images/doma.png" width="692" height="546" loading="lazy" decoding="async" alt="DOMA Teaser">
                 </div>
             </div>
 
@@ -753,9 +819,9 @@ year={2024}
                     2023 <br> ICCV <br> <span style="color:#000;">Oral</span>
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         Dynamic Point Fields
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         <a href="https://vlg.inf.ethz.ch/team/Dr-Sergey-Prokudin.html">Sergey Prokudin</a>, <strong>Qianli Ma</strong>, <a href="https://maximeraafat.github.io/about">Maxime Raafat</a>, <a href="https://scholar.google.co.uk/citations?user=pZPD0hMAAAAJ&hl=en">Julien Valentin</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
                     </div>
@@ -769,7 +835,7 @@ year={2024}
                         <a href="https://github.com/sergeyprokudin/dpf">Code</a>
                         <a href="https://arxiv.org/abs/2304.02626">arXiv</a>
                         <a href="https://youtu.be/i-9eAgS8HEA?si=6HSPZUimkeoYdvyI">Video</a>
-                        <span id="btn_dpf" onclick="showBib('bib_dpf', 'btn_dpf')">BibTeX</span>
+                        <button type="button" id="btn_dpf" aria-controls="bib_dpf" aria-expanded="false" onclick="showBib('bib_dpf', 'btn_dpf')">BibTeX</button>
                     </div>
                     <div id="bib_dpf" class="bibtex-container" hidden>
 <pre>@inproceedings{prokudin2023dynamic,
@@ -783,7 +849,7 @@ year={2023}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <img src="images/dpf.png" alt="DPF Teaser">
+                    <img src="images/dpf.png" width="800" height="604" loading="lazy" decoding="async" alt="DPF Teaser">
                 </div>
             </div>
 
@@ -792,9 +858,9 @@ year={2023}
                     2023 <br> ICCV <br> <span style="color:#000;">Oral</span>
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         Probabilistic Human Mesh Recovery in 3D Scenes from Egocentric Views
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         <a href="https://sanweiliti.github.io/">Siwei Zhang</a>, <strong>Qianli Ma</strong>, <a href="https://yz-cnsdqz.github.io/">Yan Zhang</a>, <a href="https://sadegh-aa.github.io/">Sadegh Aliakbarian</a>, <a href="http://www.cs.bath.ac.uk/~dpc/">Darren Cosker</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
                     </div>
@@ -808,12 +874,12 @@ year={2023}
                         <a href="https://github.com/sanweiliti/EgoHMR">Code</a>
                         <a href="https://arxiv.org/abs/2304.06024">arXiv</a>
                         <a href="https://youtu.be/K6m0BmfMG-E?si=Eum1jcg2DcqSsbcn">Video</a>
-                        <span id="btn_egohmr" onclick="showBib('bib_egohmr', 'btn_egohmr')">BibTeX</span>
+                        <button type="button" id="btn_egohmr" aria-controls="bib_egohmr" aria-expanded="false" onclick="showBib('bib_egohmr', 'btn_egohmr')">BibTeX</button>
                     </div>
                     <div id="bib_egohmr" class="bibtex-container" hidden>
 <pre>@inproceedings{zhang2023egohmr,
 title = {Probabilistic Human Mesh Recovery in 3D Scenes from Egocentric Views},
-author = {Siwei Zhang, Qianli Ma, Yan Zhang, Sadegh Aliakbarian, Darren Cosker, Siyu Tang},
+author = {Zhang, Siwei and Ma, Qianli and Zhang, Yan and Aliakbarian, Sadegh and Cosker, Darren and Tang, Siyu},
 booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
 pages = {7989--8000},
 month = oct,
@@ -822,7 +888,7 @@ year = {2023}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <img src="images/egohmr.jpg" alt="EgoHMR Teaser">
+                    <img src="images/egohmr.jpg" width="754" height="593" loading="lazy" decoding="async" alt="EgoHMR Teaser">
                 </div>
             </div>
 
@@ -831,9 +897,9 @@ year = {2023}
                     2022 <br> 3DV
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         Neural Point-based Shape Modeling of Humans in Challenging Clothing
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         <strong>Qianli Ma</strong>, <a href="https://ps.is.tuebingen.mpg.de/person/jyang/">Jinlong Yang</a>, <a href="https://ps.is.tuebingen.mpg.de/person/black/">Michael J. Black</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
                     </div>
@@ -846,7 +912,7 @@ year = {2023}
                         <a href="https://qianlim.github.io/SkiRT">Project</a>
                         <a href="https://github.com/qianlim/SkiRT">Code</a>
                         <a href="https://arxiv.org/abs/2209.06814">arXiv</a>
-                        <span id="btn_skirt" onclick="showBib('bib_skirt', 'btn_skirt')">BibTeX</span>
+                        <button type="button" id="btn_skirt" aria-controls="bib_skirt" aria-expanded="false" onclick="showBib('bib_skirt', 'btn_skirt')">BibTeX</button>
                     </div>
                     <div id="bib_skirt" class="bibtex-container" hidden>
 <pre>@inproceedings{SkiRT:3DV:2022,
@@ -860,7 +926,7 @@ year = {2022}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <img src="images/SkiRT.png" alt="SkiRT Teaser">
+                    <img src="images/SkiRT.png" width="800" height="548" loading="lazy" decoding="async" alt="SkiRT Teaser">
                 </div>
             </div>
 
@@ -869,9 +935,9 @@ year = {2022}
                     2022 <br> ECCV
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         EgoBody: Human Body Shape and Motion of Interacting People from Head-Mounted Devices
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         <a href="https://sanweiliti.github.io/">Siwei Zhang</a>, <strong>Qianli Ma</strong>, <a href="https://yz-cnsdqz.github.io/">Yan Zhang</a>, <a href="https://ethz.ch/en.html">Zhiyin Qian</a>, <a href="https://taeinkwon.com/">Taein Kwon</a>, <a href="https://people.inf.ethz.ch/pomarc/">Marc Pollefeys</a>, <a href="https://fbogo.github.io/">Federica Bogo</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
                     </div>
@@ -886,7 +952,7 @@ year = {2022}
                         <a href="https://egobody.ethz.ch/">Dataset</a>
                         <a href="https://arxiv.org/abs/2112.07642">arXiv</a>
                         <a href="https://youtu.be/yA7BM7zWAKM">Video</a>
-                        <span id="btn_egobody" onclick="showBib('bib_egobody', 'btn_egobody')">BibTeX</span>
+                        <button type="button" id="btn_egobody" aria-controls="bib_egobody" aria-expanded="false" onclick="showBib('bib_egobody', 'btn_egobody')">BibTeX</button>
                     </div>
                     <div id="bib_egobody" class="bibtex-container" hidden>
 <pre>@inproceedings{Egobody:ECCV:2022,
@@ -899,7 +965,7 @@ year = {2022}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <img src="images/EgoBody4.png" alt="EgoBody Teaser">
+                    <img src="images/EgoBody4.png" width="650" height="450" loading="lazy" decoding="async" alt="EgoBody Teaser">
                 </div>
             </div>
 
@@ -908,9 +974,9 @@ year = {2022}
                     2021 <br> NeurIPS
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         MetaAvatar: Learning Animatable Clothed Human Models from Few Depth Images
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         <a href="https://taconite.github.io/">Shaofei Wang</a>, <a href="https://markomih.github.io/">Marko Mihajlovic</a>, <strong>Qianli Ma</strong>, <a href="http://www.cvlibs.net/">Andreas Geiger</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
                     </div>
@@ -924,7 +990,7 @@ year = {2022}
                         <a href="https://github.com/taconite/MetaAvatar-release">Code</a>
                         <a href="https://arxiv.org/abs/2106.11944">arXiv</a>
                         <a href="https://youtu.be/AwOwdKxuBXE">Video</a>
-                        <span id="btn_metaavatar" onclick="showBib('bib_metaavatar', 'btn_metaavatar')">BibTeX</span>
+                        <button type="button" id="btn_metaavatar" aria-controls="bib_metaavatar" aria-expanded="false" onclick="showBib('bib_metaavatar', 'btn_metaavatar')">BibTeX</button>
                     </div>
                     <div id="bib_metaavatar" class="bibtex-container" hidden>
 <pre>@inproceedings{MetaAvatar:NeurIPS:2021,
@@ -939,7 +1005,7 @@ year={2021}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <img src="images/MetaAvatar.png" alt="MetaAvatar Teaser">
+                    <img src="images/MetaAvatar.png" width="800" height="556" loading="lazy" decoding="async" alt="MetaAvatar Teaser">
                 </div>
             </div>
 
@@ -948,9 +1014,9 @@ year={2021}
                     2021 <br> ICCV
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         The Power of Points for Modeling Humans in Clothing
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         <strong>Qianli Ma</strong>, <a href="https://ps.is.tuebingen.mpg.de/person/jyang/">Jinlong Yang</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>, <a href="https://ps.is.tuebingen.mpg.de/person/black/">Michael J. Black</a>
                     </div>
@@ -965,7 +1031,7 @@ year={2021}
                         <a href="https://pop.is.tue.mpg.de/">Dataset</a>
                         <a href="https://arxiv.org/abs/2109.01137">arXiv</a>
                         <a href="https://youtu.be/JY5OI74yJ4w">Video</a>
-                        <span id="btn_pop" onclick="showBib('bib_pop', 'btn_pop')">BibTeX</span>
+                        <button type="button" id="btn_pop" aria-controls="bib_pop" aria-expanded="false" onclick="showBib('bib_pop', 'btn_pop')">BibTeX</button>
                     </div>
                     <div id="bib_pop" class="bibtex-container" hidden>
 <pre>@inproceedings{POP:ICCV:2021,
@@ -979,7 +1045,7 @@ year = {2021},
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <img src="images/POP.png" alt="POP Teaser">
+                    <img src="images/POP.png" width="800" height="549" loading="lazy" decoding="async" alt="POP Teaser">
                 </div>
             </div>
 
@@ -988,9 +1054,9 @@ year = {2021},
                     2021 <br> CVPR
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         SCALE: Modeling Clothed Humans with a Surface Codec of Articulated Local Elements
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         <strong>Qianli Ma</strong>, <a href="https://shunsukesaito.github.io/">Shunsuke Saito</a>, <a href="https://ps.is.tuebingen.mpg.de/person/jyang/">Jinlong Yang</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>, <a href="https://ps.is.tuebingen.mpg.de/person/black/">Michael J. Black</a>
                     </div>
@@ -1004,7 +1070,7 @@ year = {2021},
                         <a href="https://github.com/qianlim/SCALE">Code</a>
                         <a href="https://arxiv.org/abs/2104.07660">arXiv</a>
                         <a href="https://youtu.be/-EvWqFCUb7U">Video</a>
-                        <span id="btn_scale" onclick="showBib('bib_scale', 'btn_scale')">BibTeX</span>
+                        <button type="button" id="btn_scale" aria-controls="bib_scale" aria-expanded="false" onclick="showBib('bib_scale', 'btn_scale')">BibTeX</button>
                     </div>
                     <div id="bib_scale" class="bibtex-container" hidden>
 <pre>@inproceedings{SCALE:CVPR:2021,
@@ -1018,7 +1084,7 @@ year = {2021},
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <img src="images/SCALE.png" alt="SCALE Teaser">
+                    <img src="images/SCALE.png" width="800" height="652" loading="lazy" decoding="async" alt="SCALE Teaser">
                 </div>
             </div>
 
@@ -1027,9 +1093,9 @@ year = {2021},
                     2021 <br> CVPR <br> <span style="color:#c45a00;">Best Paper Candidate</span>
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         SCANimate: Weakly Supervised Learning of Skinned Clothed Avatar Networks
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         <a href="https://shunsukesaito.github.io/">Shunsuke Saito</a>, <a href="https://ps.is.tuebingen.mpg.de/person/jyang/">Jinlong Yang</a>, <strong>Qianli Ma</strong>, <a href="https://ps.is.tuebingen.mpg.de/person/black/">Michael J. Black</a>
                     </div>
@@ -1043,7 +1109,7 @@ year = {2021},
                         <a href="https://github.com/shunsukesaito/SCANimate">Code</a>
                         <a href="https://arxiv.org/abs/2104.03313">arXiv</a>
                         <a href="https://youtu.be/EeNFvmNuuog">Video</a>
-                        <span id="btn_scanimate" onclick="showBib('bib_scanimate', 'btn_scanimate')">BibTeX</span>
+                        <button type="button" id="btn_scanimate" aria-controls="bib_scanimate" aria-expanded="false" onclick="showBib('bib_scanimate', 'btn_scanimate')">BibTeX</button>
                     </div>
                     <div id="bib_scanimate" class="bibtex-container" hidden>
 <pre>@inproceedings{SCANimate:CVPR:2021,
@@ -1057,7 +1123,7 @@ year={2021}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <img src="images/scanimate.png" alt="SCANimate Teaser">
+                    <img src="images/scanimate.png" width="587" height="404" loading="lazy" decoding="async" alt="SCANimate Teaser">
                 </div>
             </div>
 
@@ -1066,9 +1132,9 @@ year={2021}
                     2020 <br> 3DV
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         PLACE: Proximity Learning of Articulation and Contact in 3D Environments
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         <a href="https://sanweiliti.github.io/">Siwei Zhang</a>, <a href="https://yz-cnsdqz.github.io/">Yan Zhang</a>, <strong>Qianli Ma</strong>, <a href="https://ps.is.tuebingen.mpg.de/person/black/">Michael J. Black</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
                     </div>
@@ -1082,7 +1148,7 @@ year={2021}
                         <a href="https://github.com/sanweiliti/PLACE">Code</a>
                         <a href="https://arxiv.org/abs/2008.05570">arXiv</a>
                         <a href="https://youtu.be/zJ1hbtMHGrw">Video</a>
-                        <span id="btn_place" onclick="showBib('bib_place', 'btn_place')">BibTeX</span>
+                        <button type="button" id="btn_place" aria-controls="bib_place" aria-expanded="false" onclick="showBib('bib_place', 'btn_place')">BibTeX</button>
                     </div>
                     <div id="bib_place" class="bibtex-container" hidden>
 <pre>@inproceedings{PLACE:3DV:2020,
@@ -1096,7 +1162,7 @@ year = {2020}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <img src="images/PLACE.jpeg" alt="PLACE Teaser">
+                    <img src="images/PLACE.jpeg" width="850" height="590" loading="lazy" decoding="async" alt="PLACE Teaser">
                 </div>
             </div>
 
@@ -1105,9 +1171,9 @@ year = {2020}
                     2020 <br> CVPR
                 </div>
                 <div class="pub-content">
-                    <h2 class="pub-title">
+                    <h3 class="pub-title">
                         Learning to Dress 3D People in Generative Clothing
-                    </h2>
+                    </h3>
                     <div class="pub-authors">
                         <strong>Qianli Ma</strong>, <a href="https://ps.is.tuebingen.mpg.de/person/jyang/">Jinlong Yang</a>, <a href="https://anuragranj.github.io/">Anurag Ranjan</a>, <a href="http://morpheo.inrialpes.fr/people/pujades//">Sergi Pujades</a>, <a href="http://virtualhumans.mpi-inf.mpg.de/people/pons-moll.html">Gerard Pons-Moll</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>, <a href="https://ps.is.tuebingen.mpg.de/person/black/">Michael J. Black</a>
                     </div>
@@ -1122,7 +1188,7 @@ year = {2020}
                         <a href="https://cape.is.tue.mpg.de/dataset.html">Dataset</a>
                         <a href="https://arxiv.org/abs/1907.13615">arXiv</a>
                         <a href="https://youtu.be/e4W-hPFNwDE">Video</a>
-                        <span id="btn_cape" onclick="showBib('bib_cape', 'btn_cape')">BibTeX</span>
+                        <button type="button" id="btn_cape" aria-controls="bib_cape" aria-expanded="false" onclick="showBib('bib_cape', 'btn_cape')">BibTeX</button>
                     </div>
                     <div id="bib_cape" class="bibtex-container" hidden>
 <pre>@inproceedings{CAPE:CVPR:20,
@@ -1136,7 +1202,7 @@ year = {2020}
                     </div>
                 </div>
                 <div class="pub-visual">
-                    <img src="images/CAPE.png" alt="CAPE Teaser">
+                    <img src="images/CAPE.png" width="800" height="498" loading="lazy" decoding="async" alt="CAPE Teaser">
                 </div>
             </div>
 
