@@ -328,6 +328,17 @@
                 -webkit-overflow-scrolling: touch;
             }
             .topic-index::-webkit-scrollbar { display: none; }
+            /* profile links: same swipeable row as the topic index */
+            .header-links {
+                flex-wrap: nowrap;
+                white-space: nowrap;
+                margin-right: -20px;
+                padding: 0 20px 4px 0;
+                overflow-x: auto;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+            }
+            .header-links::-webkit-scrollbar { display: none; }
             .group-title { margin: 36px 0 -14px 0; letter-spacing: 0.04em; }
             .group-title:first-child { margin-top: 0; }
         }
