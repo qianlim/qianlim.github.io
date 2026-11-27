@@ -117,13 +117,48 @@
         }
 
         .section-title {
-            font-family: var(--font-sans);
-            font-size: 1.7rem;
-            font-weight: 500;
+            font-family: "Optima", "Belleza", "Lato", Verdana, Helvetica, sans-serif; /* same face as the name */
+            font-size: 1.9rem;
+            font-weight: 600;
+            font-synthesis: none;
             margin: 24px 0 32px 0;
             color: #000;
             letter-spacing: -0.01em;
         }
+
+        /* Topic index under the section heading (same look as the header links) */
+        .topic-index {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            display: flex;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            gap: 20px;
+            margin: -12px 0 52px 0;
+        }
+        .topic-index a {
+            color: var(--text-main);
+            text-decoration: none;
+            border-bottom: 1px solid #ccc;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .topic-index a:hover { background: #000; color: #fff; }
+
+        /* Topic group label: mono uppercase, like the year/venue column but larger */
+        .group-title {
+            grid-column: 1 / -1;
+            margin: 52px 0 -34px 0;
+            font-family: var(--font-mono);
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            line-height: 1.3;
+            color: #000;
+            scroll-margin-top: 24px;
+        }
+        .group-title:first-child { margin-top: 0; }
 
         .grid-container {
             display: grid;
@@ -284,6 +319,17 @@
             }
 
             .section-title { margin-bottom: 20px; }
+            /* one swipeable row on phones; it runs to the screen edge so the cut-off link hints at more */
+            .topic-index {
+                margin: -4px -20px 36px 0;
+                padding: 0 20px 4px 0;
+                overflow-x: auto;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+            }
+            .topic-index::-webkit-scrollbar { display: none; }
+            .group-title { margin: 36px 0 -14px 0; letter-spacing: 0.04em; }
+            .group-title:first-child { margin-top: 0; }
         }
     </style>
     
@@ -366,16 +412,24 @@
         </header>
 
         <h2 class="section-title">Research & Publications</h2>
+        <nav class="topic-index" aria-label="Research topics">
+            <a href="#realtime">Distillation &amp; Simulation</a>
+            <a href="#world-models">World Foundation Models</a>
+            <a href="#embodied-3d">Embodied AI &amp; 3D</a>
+            <a href="#humans">Human Modeling</a>
+        </nav>
 
         <div class="grid-container">
+            <h3 class="group-title" id="realtime">Distillation &amp; Interactive Simulation</h3>
+
             <div class="pub-item">
                 <div class="pub-meta">
                     2026 <br> Technical Report
                 </div>
                 <div class="pub-content">
-                    <h3 class="pub-title">
+                    <h4 class="pub-title">
                         Cosmos Simulation: Interactive World Simulation with Cosmos for Physical AI
-                    </h3>
+                    </h4>
                     <div class="pub-authors">
                         NVIDIA · Technical lead: causal streaming distillation, multiview and multimodal generation
                     </div>
@@ -414,46 +468,9 @@
                     2026 <br> Technical Report
                 </div>
                 <div class="pub-content">
-                    <h3 class="pub-title">
-                        Cosmos 3: Omnimodal World Models for Physical AI
-                    </h3>
-                    <div class="pub-authors">
-                        NVIDIA · Technical lead: diffusion distillation, human action pretraining; Core contributor: model architecture, training, evaluation
-                    </div>
-                    
-                    <div class="pub-desc">
-                        A single omnimodal world model for Physical AI that reasons, generates images, videos, and sounds, predicts actions, and simulates physical environments. Ranked the best open text-to-image and image-to-video model on Artificial Analysis, and the best policy model on RoboArena, at release.
-                    </div>
-                    <div class="pub-links">
-                        <a href="https://research.nvidia.com/labs/cosmos-lab/cosmos3">Website</a>
-                        <a href="https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf">Technical Report</a>
-                        <a href="https://huggingface.co/collections/nvidia/cosmos3">Code</a>
-                        <a href="https://arxiv.org/abs/2606.02800">arXiv</a>
-                        <button type="button" id="btn_cosmos3" aria-controls="bib_cosmos3" aria-expanded="false" onclick="showBib('bib_cosmos3', 'btn_cosmos3')">BibTeX</button>
-                    </div>
-                    <div id="bib_cosmos3" class="bibtex-container" hidden>
-<pre>@article{nvidia2026cosmos3,
-  title = {Cosmos 3: Omnimodal World Models for Physical AI},
-  author = {{NVIDIA}},
-  journal = {arXiv preprint arXiv:2606.02800},
-  year = {2026},
-  url = {https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf}
-}</pre>
-                    </div>
-                </div>
-                <div class="pub-visual">
-                    <video data-src="images/cosmos3.mp4" width="1024" height="576" poster="images/cosmos3-poster.jpg" loop muted playsinline preload="none"></video>
-                </div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-meta">
-                    2026 <br> Technical Report
-                </div>
-                <div class="pub-content">
-                    <h3 class="pub-title">
+                    <h4 class="pub-title">
                         Causal-rCM: A Unified Teacher-Forcing and Self-Forcing Open Recipe for Autoregressive Diffusion Distillation in Streaming Video Generation and Interactive World Models
-                    </h3>
+                    </h4>
                     <div class="pub-authors">
                         Kaiwen Zheng, Guande He, Min Zhao, Jintao Zhang, Huayu Chen, Jianfei Chen, Chen-Hsuan Lin, Ming-Yu Liu, Jun Zhu, <strong>Qianli Ma</strong>
                     </div>
@@ -542,48 +559,12 @@
 
             <div class="pub-item">
                 <div class="pub-meta">
-                    2026 <br> CVPR
-                </div>
-                <div class="pub-content">
-                    <h3 class="pub-title">
-                        SAGE: Scalable Agentic 3D Scene Generation for Embodied AI
-                    </h3>
-                    <div class="pub-authors">
-                        <a href="https://xiahongchi.github.io/">Hongchi Xia</a>, <a href="https://xuan-li.github.io/">Xuan Li</a>, <a href="https://mli0603.github.io/">Zhaoshuo Li</a>, <strong>Qianli Ma</strong>, <a href="https://cnut1648.github.io/">Jiashu Xu</a>, <a href="https://mingyuliu.net/">Ming-Yu Liu</a>, <a href="https://ycui.me/">Yin Cui</a>, <a href="https://tsungyilin.info/">Tsung-Yi Lin</a>, <a href="https://www.cs.cornell.edu/~weichiu/">Wei-Chiu Ma</a>, <a href="https://shenlong.web.illinois.edu/">Shenlong Wang</a>, <a href="https://shurans.github.io/">Shuran Song</a>, <a href="https://weify627.github.io/">Fangyin Wei</a>
-                    </div>
-                    
-                    <div class="pub-desc">
-                        An agentic framework for generating realistic, physically valid, simulator-ready 3D scenes at scale — directly deployable for embodied policy training.
-                    </div>
-                    
-                    <div class="pub-links">
-                        <a href="https://nvlabs.github.io/sage/">Project</a>
-                        <a href="https://arxiv.org/abs/2602.10116">arXiv</a>
-                        <a href="https://huggingface.co/datasets/nvidia/SAGE-10k">SAGE-10k Dataset</a>
-                        <button type="button" id="btn_sage" aria-controls="bib_sage" aria-expanded="false" onclick="showBib('bib_sage', 'btn_sage')">BibTeX</button>
-                    </div>
-                    <div id="bib_sage" class="bibtex-container" hidden>
-<pre>@inproceedings{xia2026sage,
-title={{SAGE}: Scalable Agentic {3D} Scene Generation for Embodied AI},
-author={Xia, Hongchi and Li, Xuan and Li, Zhaoshuo and Ma, Qianli and Xu, Jiashu and Liu, Ming-Yu and Cui, Yin and Lin, Tsung-Yi and Ma, Wei-Chiu and Wang, Shenlong and Song, Shuran and Wei, Fangyin},
-booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-year={2026}
-}</pre>
-                    </div>
-                </div>
-                <div class="pub-visual">
-                    <video data-src="images/sage_multi_scene.mp4" width="1920" height="1088" poster="images/sage_multi_scene-poster.jpg" loop muted playsinline preload="none"></video>
-                </div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-meta">
                     2026 <br> ICLR
                 </div>
                 <div class="pub-content">
-                    <h3 class="pub-title">
+                    <h4 class="pub-title">
                         Large Scale Diffusion Distillation via Score-Regularized Continuous-Time Consistency
-                    </h3>
+                    </h4>
                     <div class="pub-authors">
                         Kaiwen Zheng, Yuji Wang, <strong>Qianli Ma</strong>, Huayu Chen, Jintao Zhang, Yogesh Balaji, Jianfei Chen, Ming-Yu Liu, Jun Zhu, Qinsheng Zhang
                     </div>
@@ -617,9 +598,9 @@ year={2026}
                     2026 <br> Technical Report
                 </div>
                 <div class="pub-content">
-                    <h3 class="pub-title">
+                    <h4 class="pub-title">
                         DreamDojo: A Generalist Robot World Model from Large-Scale Human Videos
-                    </h3>
+                    </h4>
                     <div class="pub-authors">
                         NVIDIA · Contributor: causal distillation
                     </div>
@@ -648,14 +629,53 @@ year={2026}
                 </div>
             </div>
 
+            <h3 class="group-title" id="world-models">World Foundation Models</h3>
+
+            <div class="pub-item">
+                <div class="pub-meta">
+                    2026 <br> Technical Report
+                </div>
+                <div class="pub-content">
+                    <h4 class="pub-title">
+                        Cosmos 3: Omnimodal World Models for Physical AI
+                    </h4>
+                    <div class="pub-authors">
+                        NVIDIA · Technical lead: diffusion distillation, human action pretraining; Core contributor: model architecture, training, evaluation
+                    </div>
+                    
+                    <div class="pub-desc">
+                        A single omnimodal world model for Physical AI that reasons, generates images, videos, and sounds, predicts actions, and simulates physical environments. Ranked the best open text-to-image and image-to-video model on Artificial Analysis, and the best policy model on RoboArena, at release.
+                    </div>
+                    <div class="pub-links">
+                        <a href="https://research.nvidia.com/labs/cosmos-lab/cosmos3">Website</a>
+                        <a href="https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf">Technical Report</a>
+                        <a href="https://huggingface.co/collections/nvidia/cosmos3">Code</a>
+                        <a href="https://arxiv.org/abs/2606.02800">arXiv</a>
+                        <button type="button" id="btn_cosmos3" aria-controls="bib_cosmos3" aria-expanded="false" onclick="showBib('bib_cosmos3', 'btn_cosmos3')">BibTeX</button>
+                    </div>
+                    <div id="bib_cosmos3" class="bibtex-container" hidden>
+<pre>@article{nvidia2026cosmos3,
+  title = {Cosmos 3: Omnimodal World Models for Physical AI},
+  author = {{NVIDIA}},
+  journal = {arXiv preprint arXiv:2606.02800},
+  year = {2026},
+  url = {https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf}
+}</pre>
+                    </div>
+                </div>
+                <div class="pub-visual">
+                    <video data-src="images/cosmos3.mp4" width="1024" height="576" poster="images/cosmos3-poster.jpg" loop muted playsinline preload="none"></video>
+                </div>
+            </div>
+
             <div class="pub-item">
                 <div class="pub-meta">
                     2025 <br> Technical Report
                 </div>
                 <div class="pub-content">
-                    <h3 class="pub-title">
+                    <h4 class="pub-title">
                         Cosmos Predict and Transfer 2.5
-                    </h3>
+                    </h4>
                     <div class="pub-authors">
                         NVIDIA · Core contributor: Transfer2.5 architecture, training, evaluation
                     </div>
@@ -686,84 +706,12 @@ year={2026}
 
             <div class="pub-item">
                 <div class="pub-meta">
-                    2025 <br> CVPR
-                </div>
-                <div class="pub-content">
-                    <h3 class="pub-title">
-                        CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models
-                    </h3>
-                    <div class="pub-authors">
-                        <a href="https://qingqing-zhao.github.io/">Qingqing Zhao</a>, <a href="https://research.nvidia.com/person/yao-lu-jason">Yao Lu</a>, <a href="https://moojink.com/">Moo Jin Kim</a>, <a href="https://zipengfu.github.io/">Zipeng Fu</a>, <a href="https://hanlab.mit.edu/team/zhuoyang-zhang">Zhuoyang Zhang</a>, <a href="https://openreview.net/profile?id=~Yecheng_Wu1">Yecheng Wu</a>, <a href="https://mli0603.github.io/">Zhaoshuo Li</a>, <strong>Qianli Ma</strong>, <a href="https://hanlab.mit.edu/songhan">Song Han</a>, <a href="https://ai.stanford.edu/~cbfinn/">Chelsea Finn</a>, <a href="https://ankurhanda.github.io/">Ankur Handa</a>, <a href="https://mingyuliu.net/">Ming-Yu Liu</a>, <a href="https://xiangdonglai.github.io/">Donglai Xiang</a>, <a href="https://stanford.edu/~gordonwz/">Gordon Wetzstein</a>, <a href="https://tsungyilin.info/">Tsung-Yi Lin</a>
-                    </div>
-                    
-                    <div class="pub-desc">
-                        Generating subgoal images as a visual chain-of-thought process that improves action prediction in complex, long-horizon robot manipulation.
-                    </div>
-                    
-                    <div class="pub-links">
-                        <a href="https://cot-vla.github.io/">Project</a>
-                        <a href="https://arxiv.org/abs/2503.22020">arXiv</a>
-                        <button type="button" id="btn_cotvla" aria-controls="bib_cotvla" aria-expanded="false" onclick="showBib('bib_cotvla', 'btn_cotvla')">BibTeX</button>
-                    </div>
-                    <div id="bib_cotvla" class="bibtex-container" hidden>
-<pre>@inproceedings{zhao2025cot,
-title={CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models},
-author={Zhao, Qingqing and Lu, Yao and Kim, Moo Jin and Fu, Zipeng and Zhang, Zhuoyang and Wu, Yecheng and Li, Zhaoshuo and Ma, Qianli and Han, Song and Finn, Chelsea and Handa, Ankur and Liu, Ming-Yu and Xiang, Donglai and Wetzstein, Gordon and Lin, Tsung-Yi},
-booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-month = jun,
-year={2025}
-}</pre>
-                    </div>
-                </div>
-                <div class="pub-visual">
-                    <video data-src="images/cot_vla_video_clip.m4v" width="1024" height="576" poster="images/cot_vla_video_clip-poster.jpg" loop muted playsinline preload="none"></video>
-                </div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-meta">
-                    2025 <br> CVPR
-                </div>
-                <div class="pub-content">
-                    <h3 class="pub-title">
-                        Articulated Kinematics Distillation from Video Diffusion Models
-                    </h3>
-                    <div class="pub-authors">
-                        <a href="https://xuan-li.github.io/">Xuan Li</a>, <strong>Qianli Ma</strong>, <a href="https://tsungyilin.info/">Tsung-Yi Lin</a>, <a href="https://yongxin.ae.gatech.edu/">Yongxin Chen</a>, <a href="https://www.math.ucla.edu/~cffjiang/">Chenfanfu Jiang</a>, <a href="https://mingyuliu.net/">Ming-Yu Liu</a>, <a href="https://xiangdonglai.github.io/">Donglai Xiang</a>
-                    </div>
-                    
-                    <div class="pub-desc">
-                        Physically plausible text-to-4D animation achieved by distilling realistic motion from video generative models onto rigged 3D characters.
-                    </div>
-                    
-                    <div class="pub-links">
-                        <a href="https://research.nvidia.com/labs/dir/akd/">Project</a>
-                        <a href="https://arxiv.org/abs/2504.01204">arXiv</a>
-                        <button type="button" id="btn_akd" aria-controls="bib_akd" aria-expanded="false" onclick="showBib('bib_akd', 'btn_akd')">BibTeX</button>
-                    </div>
-                    <div id="bib_akd" class="bibtex-container" hidden>
-<pre>@inproceedings{li2025articulated,
-title={Articulated Kinematics Distillation from Video Diffusion Models},
-author={Li, Xuan and Ma, Qianli and Lin, Tsung-Yi and Chen, Yongxin and Jiang, Chenfanfu and Liu, Ming-Yu and Xiang, Donglai},
-booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-month = jun,
-year={2025}
-}</pre>
-                    </div>
-                </div>
-                <div class="pub-visual">
-                    <img src="images/akd2.jpg" width="875" height="622" loading="lazy" decoding="async" alt="AKD Teaser">
-                </div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-meta">
                     2025 <br> Technical Report
                 </div>
                 <div class="pub-content">
-                    <h3 class="pub-title">
+                    <h4 class="pub-title">
                         Cosmos-Transfer1: Conditional World Generation with Adaptive Multimodal Control
-                    </h3>
+                    </h4>
                     <div class="pub-authors">
                         NVIDIA · Core contributor: evaluation framework and benchmark, training data curation
                     </div>
@@ -799,9 +747,9 @@ year={2025}
                     2025 <br> Technical Report <br> <span style="color:#c45a00;">Best of CES '25</span>
                 </div>
                 <div class="pub-content">
-                    <h3 class="pub-title">
+                    <h4 class="pub-title">
                         Cosmos World Foundation Model Platform for Physical AI
-                    </h3>
+                    </h4>
                     <div class="pub-authors">
                         NVIDIA · Core contributor: diffusion pre-training, physics alignment evaluation, data curation
                     </div>
@@ -837,14 +785,124 @@ year={2025}
                 </div>
             </div>
 
+            <h3 class="group-title" id="embodied-3d">Embodied AI &amp; 3D Generation</h3>
+
+            <div class="pub-item">
+                <div class="pub-meta">
+                    2026 <br> CVPR
+                </div>
+                <div class="pub-content">
+                    <h4 class="pub-title">
+                        SAGE: Scalable Agentic 3D Scene Generation for Embodied AI
+                    </h4>
+                    <div class="pub-authors">
+                        <a href="https://xiahongchi.github.io/">Hongchi Xia</a>, <a href="https://xuan-li.github.io/">Xuan Li</a>, <a href="https://mli0603.github.io/">Zhaoshuo Li</a>, <strong>Qianli Ma</strong>, <a href="https://cnut1648.github.io/">Jiashu Xu</a>, <a href="https://mingyuliu.net/">Ming-Yu Liu</a>, <a href="https://ycui.me/">Yin Cui</a>, <a href="https://tsungyilin.info/">Tsung-Yi Lin</a>, <a href="https://www.cs.cornell.edu/~weichiu/">Wei-Chiu Ma</a>, <a href="https://shenlong.web.illinois.edu/">Shenlong Wang</a>, <a href="https://shurans.github.io/">Shuran Song</a>, <a href="https://weify627.github.io/">Fangyin Wei</a>
+                    </div>
+                    
+                    <div class="pub-desc">
+                        An agentic framework for generating realistic, physically valid, simulator-ready 3D scenes at scale — directly deployable for embodied policy training.
+                    </div>
+                    
+                    <div class="pub-links">
+                        <a href="https://nvlabs.github.io/sage/">Project</a>
+                        <a href="https://arxiv.org/abs/2602.10116">arXiv</a>
+                        <a href="https://huggingface.co/datasets/nvidia/SAGE-10k">SAGE-10k Dataset</a>
+                        <button type="button" id="btn_sage" aria-controls="bib_sage" aria-expanded="false" onclick="showBib('bib_sage', 'btn_sage')">BibTeX</button>
+                    </div>
+                    <div id="bib_sage" class="bibtex-container" hidden>
+<pre>@inproceedings{xia2026sage,
+title={{SAGE}: Scalable Agentic {3D} Scene Generation for Embodied AI},
+author={Xia, Hongchi and Li, Xuan and Li, Zhaoshuo and Ma, Qianli and Xu, Jiashu and Liu, Ming-Yu and Cui, Yin and Lin, Tsung-Yi and Ma, Wei-Chiu and Wang, Shenlong and Song, Shuran and Wei, Fangyin},
+booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+year={2026}
+}</pre>
+                    </div>
+                </div>
+                <div class="pub-visual">
+                    <video data-src="images/sage_multi_scene.mp4" width="1920" height="1088" poster="images/sage_multi_scene-poster.jpg" loop muted playsinline preload="none"></video>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-meta">
+                    2025 <br> CVPR
+                </div>
+                <div class="pub-content">
+                    <h4 class="pub-title">
+                        CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models
+                    </h4>
+                    <div class="pub-authors">
+                        <a href="https://qingqing-zhao.github.io/">Qingqing Zhao</a>, <a href="https://research.nvidia.com/person/yao-lu-jason">Yao Lu</a>, <a href="https://moojink.com/">Moo Jin Kim</a>, <a href="https://zipengfu.github.io/">Zipeng Fu</a>, <a href="https://hanlab.mit.edu/team/zhuoyang-zhang">Zhuoyang Zhang</a>, <a href="https://openreview.net/profile?id=~Yecheng_Wu1">Yecheng Wu</a>, <a href="https://mli0603.github.io/">Zhaoshuo Li</a>, <strong>Qianli Ma</strong>, <a href="https://hanlab.mit.edu/songhan">Song Han</a>, <a href="https://ai.stanford.edu/~cbfinn/">Chelsea Finn</a>, <a href="https://ankurhanda.github.io/">Ankur Handa</a>, <a href="https://mingyuliu.net/">Ming-Yu Liu</a>, <a href="https://xiangdonglai.github.io/">Donglai Xiang</a>, <a href="https://stanford.edu/~gordonwz/">Gordon Wetzstein</a>, <a href="https://tsungyilin.info/">Tsung-Yi Lin</a>
+                    </div>
+                    
+                    <div class="pub-desc">
+                        Generating subgoal images as a visual chain-of-thought process that improves action prediction in complex, long-horizon robot manipulation.
+                    </div>
+                    
+                    <div class="pub-links">
+                        <a href="https://cot-vla.github.io/">Project</a>
+                        <a href="https://arxiv.org/abs/2503.22020">arXiv</a>
+                        <button type="button" id="btn_cotvla" aria-controls="bib_cotvla" aria-expanded="false" onclick="showBib('bib_cotvla', 'btn_cotvla')">BibTeX</button>
+                    </div>
+                    <div id="bib_cotvla" class="bibtex-container" hidden>
+<pre>@inproceedings{zhao2025cot,
+title={CoT-VLA: Visual Chain-of-Thought Reasoning for Vision-Language-Action Models},
+author={Zhao, Qingqing and Lu, Yao and Kim, Moo Jin and Fu, Zipeng and Zhang, Zhuoyang and Wu, Yecheng and Li, Zhaoshuo and Ma, Qianli and Han, Song and Finn, Chelsea and Handa, Ankur and Liu, Ming-Yu and Xiang, Donglai and Wetzstein, Gordon and Lin, Tsung-Yi},
+booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+month = jun,
+year={2025}
+}</pre>
+                    </div>
+                </div>
+                <div class="pub-visual">
+                    <video data-src="images/cot_vla_video_clip.m4v" width="1024" height="576" poster="images/cot_vla_video_clip-poster.jpg" loop muted playsinline preload="none"></video>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-meta">
+                    2025 <br> CVPR
+                </div>
+                <div class="pub-content">
+                    <h4 class="pub-title">
+                        Articulated Kinematics Distillation from Video Diffusion Models
+                    </h4>
+                    <div class="pub-authors">
+                        <a href="https://xuan-li.github.io/">Xuan Li</a>, <strong>Qianli Ma</strong>, <a href="https://tsungyilin.info/">Tsung-Yi Lin</a>, <a href="https://yongxin.ae.gatech.edu/">Yongxin Chen</a>, <a href="https://www.math.ucla.edu/~cffjiang/">Chenfanfu Jiang</a>, <a href="https://mingyuliu.net/">Ming-Yu Liu</a>, <a href="https://xiangdonglai.github.io/">Donglai Xiang</a>
+                    </div>
+                    
+                    <div class="pub-desc">
+                        Physically plausible text-to-4D animation achieved by distilling realistic motion from video generative models onto rigged 3D characters.
+                    </div>
+                    
+                    <div class="pub-links">
+                        <a href="https://research.nvidia.com/labs/dir/akd/">Project</a>
+                        <a href="https://arxiv.org/abs/2504.01204">arXiv</a>
+                        <button type="button" id="btn_akd" aria-controls="bib_akd" aria-expanded="false" onclick="showBib('bib_akd', 'btn_akd')">BibTeX</button>
+                    </div>
+                    <div id="bib_akd" class="bibtex-container" hidden>
+<pre>@inproceedings{li2025articulated,
+title={Articulated Kinematics Distillation from Video Diffusion Models},
+author={Li, Xuan and Ma, Qianli and Lin, Tsung-Yi and Chen, Yongxin and Jiang, Chenfanfu and Liu, Ming-Yu and Xiang, Donglai},
+booktitle = {IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+month = jun,
+year={2025}
+}</pre>
+                    </div>
+                </div>
+                <div class="pub-visual">
+                    <img src="images/akd2.jpg" width="875" height="622" loading="lazy" decoding="async" alt="AKD Teaser">
+                </div>
+            </div>
+
             <div class="pub-item">
                 <div class="pub-meta">
                     2024 <br> Technical Report
                 </div>
                 <div class="pub-content">
-                    <h3 class="pub-title">
+                    <h4 class="pub-title">
                         Edify 3D: Scalable High-Quality 3D Asset Generation
-                    </h3>
+                    </h4>
                     <div class="pub-authors">
                         NVIDIA · Core contributor: geometry processing and mesh quality optimization, evaluation
                     </div>
@@ -875,131 +933,16 @@ year={2025}
                 </div>
             </div>
 
-            <div class="pub-item">
-                <div class="pub-meta">
-                    2024 <br> CVPR
-                </div>
-                <div class="pub-content">
-                    <h3 class="pub-title">
-                        Inferring Dynamics from Point Trajectories
-                    </h3>
-                    <div class="pub-authors">
-                        <a href="https://yz-cnsdqz.github.io/">Yan Zhang</a>, <a href="https://vlg.inf.ethz.ch/team/Dr-Sergey-Prokudin.html">Sergey Prokudin</a>, <a href="https://markomih.github.io">Marko Mihajlovic</a>, <strong>Qianli Ma</strong>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
-                    </div>
-                    
-                    <div class="pub-desc">
-                        How to infer scene dynamics from sparse point trajectory observations? Here's a simple yet effective solution using a spatiotemporal MLP with carefully designed regularizations. No need for scene-specific priors.
-                    </div>
-                    
-                    <div class="pub-links">
-                        <a href="https://yz-cnsdqz.github.io/eigenmotion/DOMA">Project</a>
-                        <a href="https://github.com/yz-cnsdqz/DOMA-release">Code</a>
-                        <a href="https://arxiv.org/abs/2406.03625">arXiv</a>
-                        <a href="https://youtu.be/CTWZuxu8Wps?si=yB3rvKK5YtF1pPqI">Video</a>
-                        <button type="button" id="btn_doma" aria-controls="bib_doma" aria-expanded="false" onclick="showBib('bib_doma', 'btn_doma')">BibTeX</button>
-                    </div>
-                    <div id="bib_doma" class="bibtex-container" hidden>
-<pre>@inproceedings{zhang2024degrees,
-title={Degrees of Freedom Matter: Inferring Dynamics from Point Trajectories},
-author={Zhang, Yan and Prokudin, Sergey and Mihajlovic, Marko and Ma, Qianli and Tang, Siyu},
-booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-pages = {2018-2028},
-month = jun,
-year={2024}
-}</pre>
-                    </div>
-                </div>
-                <div class="pub-visual">
-                    <img src="images/doma.png" width="692" height="546" loading="lazy" decoding="async" alt="DOMA Teaser">
-                </div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-meta">
-                    2023 <br> ICCV <br> <span style="color:#000;">Oral</span>
-                </div>
-                <div class="pub-content">
-                    <h3 class="pub-title">
-                        Dynamic Point Fields
-                    </h3>
-                    <div class="pub-authors">
-                        <a href="https://vlg.inf.ethz.ch/team/Dr-Sergey-Prokudin.html">Sergey Prokudin</a>, <strong>Qianli Ma</strong>, <a href="https://maximeraafat.github.io/about">Maxime Raafat</a>, <a href="https://scholar.google.co.uk/citations?user=pZPD0hMAAAAJ&hl=en">Julien Valentin</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
-                    </div>
-                    
-                    <div class="pub-desc">
-                        Explicit point-based representation + implicit deformation field = dynamic surface models with instant inference and high quality geometry. Robust single-scan animation of challenging clothing types even under extreme poses.
-                    </div>
-                    
-                    <div class="pub-links">
-                        <a href="https://sergeyprokudin.github.io/dpf">Project</a>
-                        <a href="https://github.com/sergeyprokudin/dpf">Code</a>
-                        <a href="https://arxiv.org/abs/2304.02626">arXiv</a>
-                        <a href="https://youtu.be/i-9eAgS8HEA?si=6HSPZUimkeoYdvyI">Video</a>
-                        <button type="button" id="btn_dpf" aria-controls="bib_dpf" aria-expanded="false" onclick="showBib('bib_dpf', 'btn_dpf')">BibTeX</button>
-                    </div>
-                    <div id="bib_dpf" class="bibtex-container" hidden>
-<pre>@inproceedings{prokudin2023dynamic,
-title={Dynamic Point Fields},
-author={Prokudin, Sergey and Ma, Qianli and Raafat, Maxime and Valentin, Julien and Tang, Siyu},
-booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
-pages = {7964--7976},
-month = oct,
-year={2023}
-}</pre>
-                    </div>
-                </div>
-                <div class="pub-visual">
-                    <img src="images/dpf.png" width="800" height="604" loading="lazy" decoding="async" alt="DPF Teaser">
-                </div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-meta">
-                    2023 <br> ICCV <br> <span style="color:#000;">Oral</span>
-                </div>
-                <div class="pub-content">
-                    <h3 class="pub-title">
-                        Probabilistic Human Mesh Recovery in 3D Scenes from Egocentric Views
-                    </h3>
-                    <div class="pub-authors">
-                        <a href="https://sanweiliti.github.io/">Siwei Zhang</a>, <strong>Qianli Ma</strong>, <a href="https://yz-cnsdqz.github.io/">Yan Zhang</a>, <a href="https://sadegh-aa.github.io/">Sadegh Aliakbarian</a>, <a href="http://www.cs.bath.ac.uk/~dpc/">Darren Cosker</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
-                    </div>
-                    
-                    <div class="pub-desc">
-                        Scene-conditioned diffusion model + collision-guided sampling = accurate character mesh recovery on observed pixels and plausible generation of unobserved parts.
-                    </div>
-                    
-                    <div class="pub-links">
-                        <a href="https://sanweiliti.github.io/egohmr/egohmr.html">Project</a>
-                        <a href="https://github.com/sanweiliti/EgoHMR">Code</a>
-                        <a href="https://arxiv.org/abs/2304.06024">arXiv</a>
-                        <a href="https://youtu.be/K6m0BmfMG-E?si=Eum1jcg2DcqSsbcn">Video</a>
-                        <button type="button" id="btn_egohmr" aria-controls="bib_egohmr" aria-expanded="false" onclick="showBib('bib_egohmr', 'btn_egohmr')">BibTeX</button>
-                    </div>
-                    <div id="bib_egohmr" class="bibtex-container" hidden>
-<pre>@inproceedings{zhang2023egohmr,
-title = {Probabilistic Human Mesh Recovery in 3D Scenes from Egocentric Views},
-author = {Zhang, Siwei and Ma, Qianli and Zhang, Yan and Aliakbarian, Sadegh and Cosker, Darren and Tang, Siyu},
-booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
-pages = {7989--8000},
-month = oct,
-year = {2023}
-}</pre>
-                    </div>
-                </div>
-                <div class="pub-visual">
-                    <img src="images/egohmr.jpg" width="754" height="593" loading="lazy" decoding="async" alt="EgoHMR Teaser">
-                </div>
-            </div>
+            <h3 class="group-title" id="humans">3D Representation &amp; Human Modeling</h3>
 
             <div class="pub-item">
                 <div class="pub-meta">
                     2022 <br> 3DV
                 </div>
                 <div class="pub-content">
-                    <h3 class="pub-title">
+                    <h4 class="pub-title">
                         Neural Point-based Shape Modeling of Humans in Challenging Clothing
-                    </h3>
+                    </h4>
                     <div class="pub-authors">
                         <strong>Qianli Ma</strong>, <a href="https://ps.is.tuebingen.mpg.de/person/jyang/">Jinlong Yang</a>, <a href="https://ps.is.tuebingen.mpg.de/person/black/">Michael J. Black</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
                     </div>
@@ -1032,91 +975,12 @@ year = {2022}
 
             <div class="pub-item">
                 <div class="pub-meta">
-                    2022 <br> ECCV
-                </div>
-                <div class="pub-content">
-                    <h3 class="pub-title">
-                        EgoBody: Human Body Shape and Motion of Interacting People from Head-Mounted Devices
-                    </h3>
-                    <div class="pub-authors">
-                        <a href="https://sanweiliti.github.io/">Siwei Zhang</a>, <strong>Qianli Ma</strong>, <a href="https://yz-cnsdqz.github.io/">Yan Zhang</a>, <a href="https://ethz.ch/en.html">Zhiyin Qian</a>, <a href="https://taeinkwon.com/">Taein Kwon</a>, <a href="https://people.inf.ethz.ch/pomarc/">Marc Pollefeys</a>, <a href="https://fbogo.github.io/">Federica Bogo</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
-                    </div>
-                    
-                    <div class="pub-desc">
-                        A large-scale dataset of 3D human characters interacting in 3D scenes, with multi-modal visual data from both third- and first-person views.
-                    </div>
-                    
-                    <div class="pub-links">
-                        <a href="https://sanweiliti.github.io/egobody/egobody.html">Project</a>
-                        <a href="https://github.com/sanweiliti/EgoBody">Code</a>
-                        <a href="https://egobody.ethz.ch/">Dataset</a>
-                        <a href="https://arxiv.org/abs/2112.07642">arXiv</a>
-                        <a href="https://youtu.be/yA7BM7zWAKM">Video</a>
-                        <button type="button" id="btn_egobody" aria-controls="bib_egobody" aria-expanded="false" onclick="showBib('bib_egobody', 'btn_egobody')">BibTeX</button>
-                    </div>
-                    <div id="bib_egobody" class="bibtex-container" hidden>
-<pre>@inproceedings{Egobody:ECCV:2022,
-title = {{EgoBody}: Human Body Shape and Motion of Interacting People from Head-Mounted Devices},
-author = {Zhang, Siwei and Ma, Qianli and Zhang, Yan and Qian, Zhiyin and Kwon, Taein and Pollefeys, Marc and Bogo, Federica and Tang, Siyu},
-booktitle = {European Conference on Computer Vision (ECCV)},
-month = oct,
-year = {2022}
-}</pre>
-                    </div>
-                </div>
-                <div class="pub-visual">
-                    <img src="images/EgoBody4.png" width="650" height="450" loading="lazy" decoding="async" alt="EgoBody Teaser">
-                </div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-meta">
-                    2021 <br> NeurIPS
-                </div>
-                <div class="pub-content">
-                    <h3 class="pub-title">
-                        MetaAvatar: Learning Animatable Clothed Human Models from Few Depth Images
-                    </h3>
-                    <div class="pub-authors">
-                        <a href="https://taconite.github.io/">Shaofei Wang</a>, <a href="https://markomih.github.io/">Marko Mihajlovic</a>, <strong>Qianli Ma</strong>, <a href="http://www.cvlibs.net/">Andreas Geiger</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
-                    </div>
-                    
-                    <div class="pub-desc">
-                        Creating an avatar of unseen subjects from as few as eight monocular depth images using a meta-learned, multi-subject, articulated, neural signed distance field model for clothed humans.
-                    </div>
-                    
-                    <div class="pub-links">
-                        <a href="https://neuralbodies.github.io/metavatar/">Project</a>
-                        <a href="https://github.com/taconite/MetaAvatar-release">Code</a>
-                        <a href="https://arxiv.org/abs/2106.11944">arXiv</a>
-                        <a href="https://youtu.be/AwOwdKxuBXE">Video</a>
-                        <button type="button" id="btn_metaavatar" aria-controls="bib_metaavatar" aria-expanded="false" onclick="showBib('bib_metaavatar', 'btn_metaavatar')">BibTeX</button>
-                    </div>
-                    <div id="bib_metaavatar" class="bibtex-container" hidden>
-<pre>@inproceedings{MetaAvatar:NeurIPS:2021,
-title = {{MetaAvatar}: Learning Animatable Clothed Human Models from Few Depth Images},
-author={Wang, Shaofei and Mihajlovic, Marko and Ma, Qianli and Geiger, Andreas and Tang, Siyu},
-journal={Advances in Neural Information Processing Systems},
-volume={34},
-pages={2810--2822},
-month=dec,
-year={2021}
-}</pre>
-                    </div>
-                </div>
-                <div class="pub-visual">
-                    <img src="images/MetaAvatar.png" width="800" height="556" loading="lazy" decoding="async" alt="MetaAvatar Teaser">
-                </div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-meta">
                     2021 <br> ICCV
                 </div>
                 <div class="pub-content">
-                    <h3 class="pub-title">
+                    <h4 class="pub-title">
                         The Power of Points for Modeling Humans in Clothing
-                    </h3>
+                    </h4>
                     <div class="pub-authors">
                         <strong>Qianli Ma</strong>, <a href="https://ps.is.tuebingen.mpg.de/person/jyang/">Jinlong Yang</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>, <a href="https://ps.is.tuebingen.mpg.de/person/black/">Michael J. Black</a>
                     </div>
@@ -1154,9 +1018,9 @@ year = {2021},
                     2021 <br> CVPR
                 </div>
                 <div class="pub-content">
-                    <h3 class="pub-title">
+                    <h4 class="pub-title">
                         SCALE: Modeling Clothed Humans with a Surface Codec of Articulated Local Elements
-                    </h3>
+                    </h4>
                     <div class="pub-authors">
                         <strong>Qianli Ma</strong>, <a href="https://shunsukesaito.github.io/">Shunsuke Saito</a>, <a href="https://ps.is.tuebingen.mpg.de/person/jyang/">Jinlong Yang</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>, <a href="https://ps.is.tuebingen.mpg.de/person/black/">Michael J. Black</a>
                     </div>
@@ -1190,12 +1054,248 @@ year = {2021},
 
             <div class="pub-item">
                 <div class="pub-meta">
+                    2020 <br> CVPR
+                </div>
+                <div class="pub-content">
+                    <h4 class="pub-title">
+                        Learning to Dress 3D People in Generative Clothing
+                    </h4>
+                    <div class="pub-authors">
+                        <strong>Qianli Ma</strong>, <a href="https://ps.is.tuebingen.mpg.de/person/jyang/">Jinlong Yang</a>, <a href="https://anuragranj.github.io/">Anurag Ranjan</a>, <a href="http://morpheo.inrialpes.fr/people/pujades//">Sergi Pujades</a>, <a href="http://virtualhumans.mpi-inf.mpg.de/people/pons-moll.html">Gerard Pons-Moll</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>, <a href="https://ps.is.tuebingen.mpg.de/person/black/">Michael J. Black</a>
+                    </div>
+                    
+                    <div class="pub-desc">
+                        CAPE — a graph-CNN-based generative model and a large-scale dataset for 3D human meshes in clothing in varied poses and garment types.
+                    </div>
+                    
+                    <div class="pub-links">
+                        <a href="https://cape.is.tue.mpg.de/">Project</a>
+                        <a href="https://github.com/QianliM/CAPE">Code</a>
+                        <a href="https://cape.is.tue.mpg.de/dataset.html">Dataset</a>
+                        <a href="https://arxiv.org/abs/1907.13615">arXiv</a>
+                        <a href="https://youtu.be/e4W-hPFNwDE">Video</a>
+                        <button type="button" id="btn_cape" aria-controls="bib_cape" aria-expanded="false" onclick="showBib('bib_cape', 'btn_cape')">BibTeX</button>
+                    </div>
+                    <div id="bib_cape" class="bibtex-container" hidden>
+<pre>@inproceedings{CAPE:CVPR:20,
+title = {Learning to Dress {3D} People in Generative Clothing},
+author = {Ma, Qianli and Yang, Jinlong and Ranjan, Anurag and Pujades, Sergi and Pons-Moll, Gerard and Tang, Siyu and Black, Michael J.},
+booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+pages={6468-6477},
+month = jun,
+year = {2020}
+}</pre>
+                    </div>
+                </div>
+                <div class="pub-visual">
+                    <img src="images/CAPE.png" width="800" height="498" loading="lazy" decoding="async" alt="CAPE Teaser">
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-meta">
+                    2024 <br> CVPR
+                </div>
+                <div class="pub-content">
+                    <h4 class="pub-title">
+                        Inferring Dynamics from Point Trajectories
+                    </h4>
+                    <div class="pub-authors">
+                        <a href="https://yz-cnsdqz.github.io/">Yan Zhang</a>, <a href="https://vlg.inf.ethz.ch/team/Dr-Sergey-Prokudin.html">Sergey Prokudin</a>, <a href="https://markomih.github.io">Marko Mihajlovic</a>, <strong>Qianli Ma</strong>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
+                    </div>
+                    
+                    <div class="pub-desc">
+                        How to infer scene dynamics from sparse point trajectory observations? Here's a simple yet effective solution using a spatiotemporal MLP with carefully designed regularizations. No need for scene-specific priors.
+                    </div>
+                    
+                    <div class="pub-links">
+                        <a href="https://yz-cnsdqz.github.io/eigenmotion/DOMA">Project</a>
+                        <a href="https://github.com/yz-cnsdqz/DOMA-release">Code</a>
+                        <a href="https://arxiv.org/abs/2406.03625">arXiv</a>
+                        <a href="https://youtu.be/CTWZuxu8Wps?si=yB3rvKK5YtF1pPqI">Video</a>
+                        <button type="button" id="btn_doma" aria-controls="bib_doma" aria-expanded="false" onclick="showBib('bib_doma', 'btn_doma')">BibTeX</button>
+                    </div>
+                    <div id="bib_doma" class="bibtex-container" hidden>
+<pre>@inproceedings{zhang2024degrees,
+title={Degrees of Freedom Matter: Inferring Dynamics from Point Trajectories},
+author={Zhang, Yan and Prokudin, Sergey and Mihajlovic, Marko and Ma, Qianli and Tang, Siyu},
+booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+pages = {2018-2028},
+month = jun,
+year={2024}
+}</pre>
+                    </div>
+                </div>
+                <div class="pub-visual">
+                    <img src="images/doma.png" width="692" height="546" loading="lazy" decoding="async" alt="DOMA Teaser">
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-meta">
+                    2023 <br> ICCV <br> <span style="color:#000;">Oral</span>
+                </div>
+                <div class="pub-content">
+                    <h4 class="pub-title">
+                        Dynamic Point Fields
+                    </h4>
+                    <div class="pub-authors">
+                        <a href="https://vlg.inf.ethz.ch/team/Dr-Sergey-Prokudin.html">Sergey Prokudin</a>, <strong>Qianli Ma</strong>, <a href="https://maximeraafat.github.io/about">Maxime Raafat</a>, <a href="https://scholar.google.co.uk/citations?user=pZPD0hMAAAAJ&hl=en">Julien Valentin</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
+                    </div>
+                    
+                    <div class="pub-desc">
+                        Explicit point-based representation + implicit deformation field = dynamic surface models with instant inference and high quality geometry. Robust single-scan animation of challenging clothing types even under extreme poses.
+                    </div>
+                    
+                    <div class="pub-links">
+                        <a href="https://sergeyprokudin.github.io/dpf">Project</a>
+                        <a href="https://github.com/sergeyprokudin/dpf">Code</a>
+                        <a href="https://arxiv.org/abs/2304.02626">arXiv</a>
+                        <a href="https://youtu.be/i-9eAgS8HEA?si=6HSPZUimkeoYdvyI">Video</a>
+                        <button type="button" id="btn_dpf" aria-controls="bib_dpf" aria-expanded="false" onclick="showBib('bib_dpf', 'btn_dpf')">BibTeX</button>
+                    </div>
+                    <div id="bib_dpf" class="bibtex-container" hidden>
+<pre>@inproceedings{prokudin2023dynamic,
+title={Dynamic Point Fields},
+author={Prokudin, Sergey and Ma, Qianli and Raafat, Maxime and Valentin, Julien and Tang, Siyu},
+booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+pages = {7964--7976},
+month = oct,
+year={2023}
+}</pre>
+                    </div>
+                </div>
+                <div class="pub-visual">
+                    <img src="images/dpf.png" width="800" height="604" loading="lazy" decoding="async" alt="DPF Teaser">
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-meta">
+                    2023 <br> ICCV <br> <span style="color:#000;">Oral</span>
+                </div>
+                <div class="pub-content">
+                    <h4 class="pub-title">
+                        Probabilistic Human Mesh Recovery in 3D Scenes from Egocentric Views
+                    </h4>
+                    <div class="pub-authors">
+                        <a href="https://sanweiliti.github.io/">Siwei Zhang</a>, <strong>Qianli Ma</strong>, <a href="https://yz-cnsdqz.github.io/">Yan Zhang</a>, <a href="https://sadegh-aa.github.io/">Sadegh Aliakbarian</a>, <a href="http://www.cs.bath.ac.uk/~dpc/">Darren Cosker</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
+                    </div>
+                    
+                    <div class="pub-desc">
+                        Scene-conditioned diffusion model + collision-guided sampling = accurate character mesh recovery on observed pixels and plausible generation of unobserved parts.
+                    </div>
+                    
+                    <div class="pub-links">
+                        <a href="https://sanweiliti.github.io/egohmr/egohmr.html">Project</a>
+                        <a href="https://github.com/sanweiliti/EgoHMR">Code</a>
+                        <a href="https://arxiv.org/abs/2304.06024">arXiv</a>
+                        <a href="https://youtu.be/K6m0BmfMG-E?si=Eum1jcg2DcqSsbcn">Video</a>
+                        <button type="button" id="btn_egohmr" aria-controls="bib_egohmr" aria-expanded="false" onclick="showBib('bib_egohmr', 'btn_egohmr')">BibTeX</button>
+                    </div>
+                    <div id="bib_egohmr" class="bibtex-container" hidden>
+<pre>@inproceedings{zhang2023egohmr,
+title = {Probabilistic Human Mesh Recovery in 3D Scenes from Egocentric Views},
+author = {Zhang, Siwei and Ma, Qianli and Zhang, Yan and Aliakbarian, Sadegh and Cosker, Darren and Tang, Siyu},
+booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+pages = {7989--8000},
+month = oct,
+year = {2023}
+}</pre>
+                    </div>
+                </div>
+                <div class="pub-visual">
+                    <img src="images/egohmr.jpg" width="754" height="593" loading="lazy" decoding="async" alt="EgoHMR Teaser">
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-meta">
+                    2022 <br> ECCV
+                </div>
+                <div class="pub-content">
+                    <h4 class="pub-title">
+                        EgoBody: Human Body Shape and Motion of Interacting People from Head-Mounted Devices
+                    </h4>
+                    <div class="pub-authors">
+                        <a href="https://sanweiliti.github.io/">Siwei Zhang</a>, <strong>Qianli Ma</strong>, <a href="https://yz-cnsdqz.github.io/">Yan Zhang</a>, <a href="https://ethz.ch/en.html">Zhiyin Qian</a>, <a href="https://taeinkwon.com/">Taein Kwon</a>, <a href="https://people.inf.ethz.ch/pomarc/">Marc Pollefeys</a>, <a href="https://fbogo.github.io/">Federica Bogo</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
+                    </div>
+                    
+                    <div class="pub-desc">
+                        A large-scale dataset of 3D human characters interacting in 3D scenes, with multi-modal visual data from both third- and first-person views.
+                    </div>
+                    
+                    <div class="pub-links">
+                        <a href="https://sanweiliti.github.io/egobody/egobody.html">Project</a>
+                        <a href="https://github.com/sanweiliti/EgoBody">Code</a>
+                        <a href="https://egobody.ethz.ch/">Dataset</a>
+                        <a href="https://arxiv.org/abs/2112.07642">arXiv</a>
+                        <a href="https://youtu.be/yA7BM7zWAKM">Video</a>
+                        <button type="button" id="btn_egobody" aria-controls="bib_egobody" aria-expanded="false" onclick="showBib('bib_egobody', 'btn_egobody')">BibTeX</button>
+                    </div>
+                    <div id="bib_egobody" class="bibtex-container" hidden>
+<pre>@inproceedings{Egobody:ECCV:2022,
+title = {{EgoBody}: Human Body Shape and Motion of Interacting People from Head-Mounted Devices},
+author = {Zhang, Siwei and Ma, Qianli and Zhang, Yan and Qian, Zhiyin and Kwon, Taein and Pollefeys, Marc and Bogo, Federica and Tang, Siyu},
+booktitle = {European Conference on Computer Vision (ECCV)},
+month = oct,
+year = {2022}
+}</pre>
+                    </div>
+                </div>
+                <div class="pub-visual">
+                    <img src="images/EgoBody4.png" width="650" height="450" loading="lazy" decoding="async" alt="EgoBody Teaser">
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-meta">
+                    2021 <br> NeurIPS
+                </div>
+                <div class="pub-content">
+                    <h4 class="pub-title">
+                        MetaAvatar: Learning Animatable Clothed Human Models from Few Depth Images
+                    </h4>
+                    <div class="pub-authors">
+                        <a href="https://taconite.github.io/">Shaofei Wang</a>, <a href="https://markomih.github.io/">Marko Mihajlovic</a>, <strong>Qianli Ma</strong>, <a href="http://www.cvlibs.net/">Andreas Geiger</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
+                    </div>
+                    
+                    <div class="pub-desc">
+                        Creating an avatar of unseen subjects from as few as eight monocular depth images using a meta-learned, multi-subject, articulated, neural signed distance field model for clothed humans.
+                    </div>
+                    
+                    <div class="pub-links">
+                        <a href="https://neuralbodies.github.io/metavatar/">Project</a>
+                        <a href="https://github.com/taconite/MetaAvatar-release">Code</a>
+                        <a href="https://arxiv.org/abs/2106.11944">arXiv</a>
+                        <a href="https://youtu.be/AwOwdKxuBXE">Video</a>
+                        <button type="button" id="btn_metaavatar" aria-controls="bib_metaavatar" aria-expanded="false" onclick="showBib('bib_metaavatar', 'btn_metaavatar')">BibTeX</button>
+                    </div>
+                    <div id="bib_metaavatar" class="bibtex-container" hidden>
+<pre>@inproceedings{MetaAvatar:NeurIPS:2021,
+title = {{MetaAvatar}: Learning Animatable Clothed Human Models from Few Depth Images},
+author={Wang, Shaofei and Mihajlovic, Marko and Ma, Qianli and Geiger, Andreas and Tang, Siyu},
+journal={Advances in Neural Information Processing Systems},
+volume={34},
+pages={2810--2822},
+month=dec,
+year={2021}
+}</pre>
+                    </div>
+                </div>
+                <div class="pub-visual">
+                    <img src="images/MetaAvatar.png" width="800" height="556" loading="lazy" decoding="async" alt="MetaAvatar Teaser">
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-meta">
                     2021 <br> CVPR <br> <span style="color:#c45a00;">Best Paper Candidate</span>
                 </div>
                 <div class="pub-content">
-                    <h3 class="pub-title">
+                    <h4 class="pub-title">
                         SCANimate: Weakly Supervised Learning of Skinned Clothed Avatar Networks
-                    </h3>
+                    </h4>
                     <div class="pub-authors">
                         <a href="https://shunsukesaito.github.io/">Shunsuke Saito</a>, <a href="https://ps.is.tuebingen.mpg.de/person/jyang/">Jinlong Yang</a>, <strong>Qianli Ma</strong>, <a href="https://ps.is.tuebingen.mpg.de/person/black/">Michael J. Black</a>
                     </div>
@@ -1232,9 +1332,9 @@ year={2021}
                     2020 <br> 3DV
                 </div>
                 <div class="pub-content">
-                    <h3 class="pub-title">
+                    <h4 class="pub-title">
                         PLACE: Proximity Learning of Articulation and Contact in 3D Environments
-                    </h3>
+                    </h4>
                     <div class="pub-authors">
                         <a href="https://sanweiliti.github.io/">Siwei Zhang</a>, <a href="https://yz-cnsdqz.github.io/">Yan Zhang</a>, <strong>Qianli Ma</strong>, <a href="https://ps.is.tuebingen.mpg.de/person/black/">Michael J. Black</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>
                     </div>
@@ -1265,47 +1365,6 @@ year = {2020}
                     <img src="images/PLACE.jpeg" width="850" height="590" loading="lazy" decoding="async" alt="PLACE Teaser">
                 </div>
             </div>
-
-            <div class="pub-item">
-                <div class="pub-meta">
-                    2020 <br> CVPR
-                </div>
-                <div class="pub-content">
-                    <h3 class="pub-title">
-                        Learning to Dress 3D People in Generative Clothing
-                    </h3>
-                    <div class="pub-authors">
-                        <strong>Qianli Ma</strong>, <a href="https://ps.is.tuebingen.mpg.de/person/jyang/">Jinlong Yang</a>, <a href="https://anuragranj.github.io/">Anurag Ranjan</a>, <a href="http://morpheo.inrialpes.fr/people/pujades//">Sergi Pujades</a>, <a href="http://virtualhumans.mpi-inf.mpg.de/people/pons-moll.html">Gerard Pons-Moll</a>, <a href="https://vlg.inf.ethz.ch/team/Prof-Dr-Siyu-Tang.html">Siyu Tang</a>, <a href="https://ps.is.tuebingen.mpg.de/person/black/">Michael J. Black</a>
-                    </div>
-                    
-                    <div class="pub-desc">
-                        CAPE — a graph-CNN-based generative model and a large-scale dataset for 3D human meshes in clothing in varied poses and garment types.
-                    </div>
-                    
-                    <div class="pub-links">
-                        <a href="https://cape.is.tue.mpg.de/">Project</a>
-                        <a href="https://github.com/QianliM/CAPE">Code</a>
-                        <a href="https://cape.is.tue.mpg.de/dataset.html">Dataset</a>
-                        <a href="https://arxiv.org/abs/1907.13615">arXiv</a>
-                        <a href="https://youtu.be/e4W-hPFNwDE">Video</a>
-                        <button type="button" id="btn_cape" aria-controls="bib_cape" aria-expanded="false" onclick="showBib('bib_cape', 'btn_cape')">BibTeX</button>
-                    </div>
-                    <div id="bib_cape" class="bibtex-container" hidden>
-<pre>@inproceedings{CAPE:CVPR:20,
-title = {Learning to Dress {3D} People in Generative Clothing},
-author = {Ma, Qianli and Yang, Jinlong and Ranjan, Anurag and Pujades, Sergi and Pons-Moll, Gerard and Tang, Siyu and Black, Michael J.},
-booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-pages={6468-6477},
-month = jun,
-year = {2020}
-}</pre>
-                    </div>
-                </div>
-                <div class="pub-visual">
-                    <img src="images/CAPE.png" width="800" height="498" loading="lazy" decoding="async" alt="CAPE Teaser">
-                </div>
-            </div>
-
         </div>
 
     </div>
